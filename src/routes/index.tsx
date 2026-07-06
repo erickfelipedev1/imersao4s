@@ -16,6 +16,7 @@ import {
   ShieldCheck,
   Quote,
 } from "lucide-react";
+import giulianoAsset from "@/assets/giuliano.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -301,8 +302,13 @@ function AuthoritySection() {
               aria-hidden
             />
             <div className="relative grid h-56 w-56 place-items-center overflow-hidden rounded-full border-2 border-teal/60 bg-navy-elevated sm:h-64 sm:w-64">
-              <span className="font-display text-6xl font-black text-white/20">GR</span>
-              <div className="absolute inset-x-0 bottom-0 border-t border-teal/30 bg-navy-deep/70 py-2 text-center text-xs uppercase tracking-widest text-teal">
+              <img
+                src={giulianoAsset.url}
+                alt="Giuliano Rédua, mentor da Jornada 4S"
+                className="h-full w-full object-cover"
+                loading="lazy"
+              />
+              <div className="absolute inset-x-0 bottom-0 border-t border-teal/30 bg-navy-deep/80 py-2 text-center text-xs uppercase tracking-widest text-teal backdrop-blur-sm">
                 Mentor
               </div>
             </div>
