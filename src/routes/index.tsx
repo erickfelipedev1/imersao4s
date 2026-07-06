@@ -15,6 +15,8 @@ import {
   Sparkles,
   ShieldCheck,
   Quote,
+  Play,
+  Pause,
 } from "lucide-react";
 import giulianoAsset from "@/assets/giuliano.jpg.asset.json";
 import logo4sAsset from "@/assets/logo-4s.png.asset.json";
@@ -247,30 +249,61 @@ function Hero() {
 
           {/* right: video */}
           <Reveal>
-            <div className="relative">
-              <div
-                className="absolute inset-0 -m-1 rounded-2xl opacity-40 blur-2xl"
-                style={{ background: "var(--flame)" }}
-                aria-hidden
-              />
-              <video
-                src={nextLevelAsset.url}
-                poster={posterAsset.url}
-                autoPlay
-                muted
-                loop
-                playsInline
-                title="Vídeo da Jornada 4S"
-                className="relative w-full rounded-2xl border border-white/10 bg-navy-elevated shadow-elevated aspect-video object-cover"
-                aria-label="Vídeo de apresentação da Jornada 4S"
-              />
-            </div>
+            <HeroVideo />
           </Reveal>
         </div>
       </div>
     </section>
   );
 }
+
+function HeroVideo() {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+
+  const toggle = () => {
+    const v = ref.current;
+    if (!v) return;
+    if (v.paused) {
+      void v.play().then(() => setPlaying(true));
+    } else {
+      v.pause();
+      setPlaying(false);
+    }
+  };
+
+  return (
+    <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-navy-elevated shadow-elevated aspect-video group">
+      <video
+        ref={ref}
+        src={nextLevelAsset.url}
+        poster={posterAsset.url}
+        muted
+        loop
+        playsInline
+        className="h-full w-full object-cover"
+        aria-label="Vídeo de apresentação da Jornada 4S"
+      />
+      <button
+        type="button"
+        onClick={toggle}
+        className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal ${
+          playing ? "opacity-0 group-hover:opacity-100 bg-black/20" : "opacity-100 bg-black/30"
+        }`}
+        aria-label={playing ? "Pausar vídeo" : "Reproduzir vídeo"}
+      >
+        <div className="grid h-14 w-14 place-items-center rounded-full bg-white/10 backdrop-blur-sm ring-1 ring-white/20 transition-transform hover:scale-110 active:scale-95">
+          {playing ? (
+            <Pause className="h-6 w-6 text-white" />
+          ) : (
+            <Play className="h-6 w-6 text-white ml-0.5" />
+          )}
+        </div>
+      </button>
+    </div>
+  );
+}
+
 
 
 function ContextSection() {
