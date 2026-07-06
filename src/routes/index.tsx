@@ -348,22 +348,23 @@ function AuthoritySection() {
         <Reveal>
           <div className="relative mx-auto md:mx-0">
             <div
-              className="absolute inset-0 -m-2 rounded-full opacity-50 blur-2xl"
+              className="absolute inset-0 -m-4 rounded-3xl opacity-40 blur-3xl"
               style={{ background: "var(--flame)" }}
               aria-hidden
             />
-            <div className="relative grid h-56 w-56 place-items-center overflow-hidden rounded-full border-2 border-teal/60 bg-navy-elevated sm:h-64 sm:w-64">
+            <figure className="relative overflow-hidden rounded-3xl border border-white/10 bg-navy-elevated shadow-2xl w-72 sm:w-80">
               <img
                 src={giulianoAsset.url}
                 alt="Giuliano Rédua, mentor da Jornada 4S"
-                className="h-full w-full object-cover"
+                className="block h-96 w-full object-cover sm:h-[420px]"
                 loading="lazy"
               />
-              <div className="absolute inset-x-0 bottom-0 border-t border-teal/30 bg-navy-deep/80 py-2 text-center text-xs uppercase tracking-widest text-teal backdrop-blur-sm">
-                Mentor
-              </div>
-            </div>
+              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-deep via-navy-deep/85 to-transparent px-6 pb-6 pt-16">
+                <h3 className="font-display text-2xl font-black text-white sm:text-3xl">Giuliano Rédua</h3>
+              </figcaption>
+            </figure>
           </div>
+
         </Reveal>
         <Reveal>
           <div>
