@@ -207,6 +207,13 @@ function Hero() {
             </Reveal>
 
             <Reveal>
+              <div className="mt-5 lg:hidden">
+                <HeroVideo />
+              </div>
+            </Reveal>
+
+
+            <Reveal>
               <p className="mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
                 Um dia de imersão presencial em <span className="text-white">Santos/SP</span> para empresários que
                 querem aumentar margem, reduzir custos e descobrir oportunidades importando da China — ensinado por quem
