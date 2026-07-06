@@ -186,62 +186,89 @@ function Hero() {
       />
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
-        <Reveal>
-          <span className="inline-flex items-center gap-2 rounded-full border border-teal/40 bg-teal/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-teal">
-            <Sparkles className="h-3.5 w-3.5" /> Imersão Jornada 4S
-          </span>
-        </Reveal>
-
-        <Reveal>
-          <h1 className="mt-6 font-display text-4xl font-black leading-[1.05] text-white sm:text-6xl lg:text-7xl">
-            Domine o mercado <br className="hidden sm:block" />
-            mais <span className="text-gradient-flame">lucrativo do mundo</span>
-            <br className="hidden sm:block" /> em apenas 1 dia.
-          </h1>
-        </Reveal>
-
-        <Reveal>
-          <p className="mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl">
-            Um dia de imersão presencial em <span className="text-white">Santos/SP</span> para empresários que
-            querem aumentar margem, reduzir custos e descobrir oportunidades importando da China — ensinado por quem
-            opera há mais de 20 anos no mercado.
-          </p>
-        </Reveal>
-
-        <Reveal>
-          <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-            <CTAButton size="lg" className="animate-pulse-glow">
-              Garantir minha vaga
-            </CTAButton>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <ShieldCheck className="h-4 w-4 text-teal" />
-              Vagas limitadas — apenas <span className="text-white font-semibold">30 empresários</span> nesta edição
-            </div>
-          </div>
-        </Reveal>
-
-        <Reveal>
-          <div className="mt-10">
-            <Countdown />
-          </div>
-        </Reveal>
-
-        <Reveal>
-          <div className="mt-12 flex flex-wrap gap-2 border-t border-white/10 pt-6">
-            {tags.map((t) => (
-              <span
-                key={t}
-                className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-white/80"
-              >
-                {t}
+        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+          {/* left: copy + actions */}
+          <div>
+            <Reveal>
+              <span className="inline-flex items-center gap-2 rounded-full border border-teal/40 bg-teal/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-teal">
+                <Sparkles className="h-3.5 w-3.5" /> Imersão Jornada 4S
               </span>
-            ))}
+            </Reveal>
+
+            <Reveal>
+              <h1 className="mt-4 font-display text-3xl font-black leading-[1.05] text-white sm:text-4xl lg:text-5xl">
+                Domine o mercado <br className="hidden sm:block" />
+                mais <span className="text-gradient-flame">lucrativo do mundo</span>
+                <br className="hidden sm:block" /> em apenas 1 dia.
+              </h1>
+            </Reveal>
+
+            <Reveal>
+              <p className="mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
+                Um dia de imersão presencial em <span className="text-white">Santos/SP</span> para empresários que
+                querem aumentar margem, reduzir custos e descobrir oportunidades importando da China — ensinado por quem
+                opera há mais de 20 anos no mercado.
+              </p>
+            </Reveal>
+
+            <Reveal>
+              <div className="mt-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+                <CTAButton size="lg" className="animate-pulse-glow">
+                  Garantir minha vaga
+                </CTAButton>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <ShieldCheck className="h-4 w-4 text-teal" />
+                  Vagas limitadas — apenas <span className="text-white font-semibold">30 empresários</span> nesta edição
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal>
+              <div className="mt-8">
+                <Countdown />
+              </div>
+            </Reveal>
+
+            <Reveal>
+              <div className="mt-10 flex flex-wrap gap-2 border-t border-white/10 pt-6">
+                {tags.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-white/80"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </Reveal>
           </div>
-        </Reveal>
+
+          {/* right: video */}
+          <Reveal>
+            <div className="relative">
+              <div
+                className="absolute inset-0 -m-1 rounded-2xl opacity-40 blur-2xl"
+                style={{ background: "var(--flame)" }}
+                aria-hidden
+              />
+              <video
+                src={nextLevelAsset.url}
+                autoPlay
+                muted
+                loop
+                playsInline
+                title="Vídeo da Jornada 4S"
+                className="relative w-full rounded-2xl border border-white/10 bg-navy-elevated shadow-elevated aspect-video object-cover"
+                aria-label="Vídeo de apresentação da Jornada 4S"
+              />
+            </div>
+          </Reveal>
+        </div>
       </div>
     </section>
   );
 }
+
 
 function ContextSection() {
   const items = [
