@@ -17,6 +17,7 @@ import {
   Quote,
 } from "lucide-react";
 import giulianoAsset from "@/assets/giuliano.jpg.asset.json";
+import logo4sAsset from "@/assets/logo-4s.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -77,8 +78,8 @@ function Reveal({ children, className = "" }: { children: React.ReactNode; class
 function LogoMark({ className = "" }: { className?: string }) {
   return (
     <div className={`flex items-center gap-2 ${className}`}>
-      <div className="grid h-9 w-9 place-items-center rounded-lg bg-flame-gradient font-display font-black text-white text-lg">
-        4S
+      <div className="grid h-10 w-10 place-items-center overflow-hidden rounded-lg bg-navy-deep ring-1 ring-white/10">
+        <img src={logo4sAsset.url} alt="Logo Jornada 4S" className="h-full w-full object-cover" />
       </div>
       <div className="leading-tight">
         <div className="font-display font-extrabold text-white text-sm tracking-wide">JORNADA 4S</div>
