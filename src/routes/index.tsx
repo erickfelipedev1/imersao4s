@@ -212,7 +212,7 @@ function Hero() {
             </Reveal>
 
             <Reveal>
-              <div className="mt-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+              <div className="mt-6 flex flex-col items-start gap-4">
                 <CTAButton size="lg" className="animate-pulse-glow">
                   Garantir minha vaga
                 </CTAButton>
@@ -222,6 +222,7 @@ function Hero() {
                 </div>
               </div>
             </Reveal>
+
 
             <Reveal>
               <div className="mt-8">
