@@ -16,6 +16,7 @@ import {
   ShieldCheck,
   Quote,
 } from "lucide-react";
+import giulianoAsset from "@/assets/giuliano.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
