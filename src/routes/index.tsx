@@ -195,7 +195,7 @@ function Hero() {
           </span>
         </Reveal>
 
-        <div className="mt-4 grid items-start gap-6 lg:grid-cols-2 lg:gap-10">
+        <div className="mt-4 grid items-start gap-4 lg:grid-cols-2 lg:gap-6">
           {/* left: copy + actions */}
           <div>
             <Reveal>
