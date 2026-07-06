@@ -216,7 +216,7 @@ function Hero() {
             <Reveal>
               <p className="mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
                 Um dia de imersão presencial em <span className="text-white">Santos/SP</span> para empresários que
-                querem aumentar margem, reduzir custos e descobrir oportunidades importando da China — ensinado por quem
+                querem aumentar margem, reduzir custos e descobrir oportunidades importando da China, ensinado por quem
                 opera há mais de 20 anos no mercado.
               </p>
             </Reveal>
