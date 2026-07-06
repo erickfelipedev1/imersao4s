@@ -188,76 +188,65 @@ function Hero() {
         aria-hidden
       />
 
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6">
         <Reveal>
-          <span className="inline-flex items-center gap-2 rounded-full border border-teal/40 bg-teal/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-teal">
+          <span className="mx-auto inline-flex items-center gap-2 rounded-full border border-teal/40 bg-teal/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-teal">
             <Sparkles className="h-3.5 w-3.5" /> Imersão Jornada 4S
           </span>
         </Reveal>
 
-        <div className="mt-4 grid items-start gap-4 lg:grid-cols-2 lg:gap-6">
-          {/* left: copy + actions */}
-          <div>
-            <Reveal>
-              <h1 className="font-display text-3xl font-black leading-[1.05] text-white sm:text-4xl lg:text-5xl">
-                Domine o mercado <br className="hidden sm:block" />
-                mais <span className="text-gradient-flame">lucrativo do mundo</span>
-                <br className="hidden sm:block" /> em apenas 1 dia.
-              </h1>
-            </Reveal>
+        <Reveal>
+          <h1 className="mx-auto mt-4 font-display text-3xl font-black leading-[1.05] text-white sm:text-4xl lg:text-5xl">
+            Domine o mercado <br className="hidden sm:block" />
+            mais <span className="text-gradient-flame">lucrativo do mundo</span>
+            <br className="hidden sm:block" /> em apenas 1 dia.
+          </h1>
+        </Reveal>
 
-            <Reveal>
-              <div className="mt-5 lg:hidden">
-                <HeroVideo />
-              </div>
-            </Reveal>
-
-
-            <Reveal>
-              <p className="mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
-                Um dia de imersão presencial em <span className="text-white">Santos/SP</span> para empresários que
-                querem aumentar margem, reduzir custos e descobrir oportunidades importando da China, ensinado por quem
-                opera há mais de 20 anos no mercado.
-              </p>
-            </Reveal>
-
-            <Reveal>
-              <div className="mt-6 flex flex-col items-start gap-4">
-                <CTAButton size="lg" className="animate-pulse-glow">
-                  Garantir minha vaga
-                </CTAButton>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <ShieldCheck className="h-4 w-4 text-teal" />
-                  Vagas limitadas, apenas <span className="text-white font-semibold">30 empresários</span> nesta edição
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal>
-              <div className="mt-8">
-                <Countdown />
-              </div>
-            </Reveal>
-
-            <Reveal>
-              <div className="mt-10 flex flex-wrap gap-2 border-t border-white/10 pt-6">
-                {tags.map((t) => (
-                  <span
-                    key={t}
-                    className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-white/80"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-
-          {/* right: video (desktop only) */}
-          <Reveal className="hidden lg:block">
+        <Reveal>
+          <div className="mx-auto mt-6 max-w-3xl">
             <HeroVideo />
-          </Reveal>
-        </div>
+          </div>
+        </Reveal>
+
+        <Reveal>
+          <p className="mx-auto mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
+            Um dia de imersão presencial em <span className="text-white">Santos/SP</span> para empresários que
+            querem aumentar margem, reduzir custos e descobrir oportunidades importando da China, ensinado por quem
+            opera há mais de 20 anos no mercado.
+          </p>
+        </Reveal>
+
+        <Reveal>
+          <div className="mt-6 flex flex-col items-center gap-4">
+            <CTAButton size="lg" className="animate-pulse-glow">
+              Garantir minha vaga
+            </CTAButton>
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <ShieldCheck className="h-4 w-4 text-teal" />
+              Vagas limitadas, apenas <span className="font-semibold text-white">30 empresários</span> nesta edição
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal>
+          <div className="mt-8 flex justify-center">
+            <Countdown />
+          </div>
+        </Reveal>
+
+        <Reveal>
+          <div className="mx-auto mt-10 flex max-w-2xl flex-wrap justify-center gap-2 border-t border-white/10 pt-6">
+            {tags.map((t) => (
+              <span
+                key={t}
+                className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-white/80"
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+        </Reveal>
       </div>
 
     </section>
