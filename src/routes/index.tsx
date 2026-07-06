@@ -189,17 +189,17 @@ function Hero() {
       />
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid items-start gap-6 lg:grid-cols-2 lg:gap-10">
+        <Reveal>
+          <span className="inline-flex items-center gap-2 rounded-full border border-teal/40 bg-teal/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-teal">
+            <Sparkles className="h-3.5 w-3.5" /> Imersão Jornada 4S
+          </span>
+        </Reveal>
+
+        <div className="mt-4 grid items-start gap-6 lg:grid-cols-2 lg:gap-10">
           {/* left: copy + actions */}
           <div>
             <Reveal>
-              <span className="inline-flex items-center gap-2 rounded-full border border-teal/40 bg-teal/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-teal">
-                <Sparkles className="h-3.5 w-3.5" /> Imersão Jornada 4S
-              </span>
-            </Reveal>
-
-            <Reveal>
-              <h1 className="mt-4 font-display text-3xl font-black leading-[1.05] text-white sm:text-4xl lg:text-5xl">
+              <h1 className="font-display text-3xl font-black leading-[1.05] text-white sm:text-4xl lg:text-5xl">
                 Domine o mercado <br className="hidden sm:block" />
                 mais <span className="text-gradient-flame">lucrativo do mundo</span>
                 <br className="hidden sm:block" /> em apenas 1 dia.
@@ -225,7 +225,6 @@ function Hero() {
                 </div>
               </div>
             </Reveal>
-
 
             <Reveal>
               <div className="mt-8">
@@ -253,6 +252,7 @@ function Hero() {
           </Reveal>
         </div>
       </div>
+
     </section>
   );
 }
