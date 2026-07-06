@@ -228,7 +228,7 @@ function Hero() {
                 </CTAButton>
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <ShieldCheck className="h-4 w-4 text-teal" />
-                  Vagas limitadas — apenas <span className="text-white font-semibold">30 empresários</span> nesta edição
+                  Vagas limitadas, apenas <span className="text-white font-semibold">30 empresários</span> nesta edição
                 </div>
               </div>
             </Reveal>
@@ -334,7 +334,7 @@ function ContextSection() {
           <p className="mt-6 max-w-3xl text-lg text-muted-foreground">
             Por anos, comprar de distribuidores nacionais foi o caminho simples. Hoje, empresas competitivas buscam a
             origem dos produtos para recuperar margem e reduzir a dependência nacional. A China deixou de ser só baixo
-            custo — virou centro global de inovação e oportunidade.
+            custo, virou centro global de inovação e oportunidade.
           </p>
         </Reveal>
 
@@ -398,7 +398,7 @@ function AuthoritySection() {
               <span className="text-gradient-flame font-bold">30 anos</span> em comércio exterior.
             </p>
             <p className="mt-4 text-lg text-muted-foreground">
-              A metodologia é a base da Jornada 4S — abrir os olhos para um novo mercado, muito além de importação:
+              A metodologia é a base da Jornada 4S, abrir os olhos para um novo mercado, muito além de importação:
               liberdade, acesso e margem real em cada operação.
             </p>
           </div>
@@ -569,7 +569,7 @@ function ClosingSection() {
               <div className="mt-6 space-y-3 text-white/85">
                 <div className="flex items-start gap-3">
                   <MapPin className="mt-1 h-5 w-5 shrink-0 text-teal" />
-                  <span>Rua Dr. Acácio Nogueira, 14 — Boqueirão, Santos/SP</span>
+                  <span>Rua Dr. Acácio Nogueira, 14, Boqueirão, Santos/SP</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <Calendar className="mt-1 h-5 w-5 shrink-0 text-teal" />
@@ -650,7 +650,7 @@ function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6">
         <LogoMark />
         <div className="text-xs text-muted-foreground">
-          © {new Date().getFullYear()} Grupo Now — Jornada 4S. Todos os direitos reservados.
+          © {new Date().getFullYear()} Grupo Now, Jornada 4S. Todos os direitos reservados.
         </div>
       </div>
     </footer>
