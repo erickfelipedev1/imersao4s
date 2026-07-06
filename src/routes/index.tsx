@@ -359,8 +359,8 @@ function AuthoritySection() {
         <Reveal>
           <div className="relative mx-auto md:mx-0">
             <div
-              className="absolute inset-0 -m-2 rounded-full opacity-40 blur-2xl"
-              style={{ background: "var(--teal)" }}
+              className="absolute inset-0 -m-2 rounded-full opacity-50 blur-2xl"
+              style={{ background: "var(--flame)" }}
               aria-hidden
             />
             <div className="relative grid h-56 w-56 place-items-center overflow-hidden rounded-full border-2 border-teal/60 bg-navy-elevated sm:h-64 sm:w-64">
