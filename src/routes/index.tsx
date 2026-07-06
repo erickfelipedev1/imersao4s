@@ -117,19 +117,8 @@ function CTAButton({
 /* -------- sections -------- */
 
 function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all ${
-        scrolled ? "backdrop-blur-lg bg-navy-deep/80 border-b border-white/10" : "bg-transparent"
-      }`}
-    >
+    <header className="border-b border-white/10 bg-navy-deep/95 backdrop-blur-lg">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <LogoMark />
         <CTAButton className="hidden sm:inline-flex">Garantir minha vaga</CTAButton>
