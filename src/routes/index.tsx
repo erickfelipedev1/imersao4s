@@ -253,8 +253,8 @@ function Hero() {
             </Reveal>
           </div>
 
-          {/* right: video */}
-          <Reveal>
+          {/* right: video (desktop only) */}
+          <Reveal className="hidden lg:block">
             <HeroVideo />
           </Reveal>
         </div>
