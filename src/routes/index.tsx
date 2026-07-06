@@ -160,7 +160,7 @@ function Countdown() {
 function Hero() {
   const tags = ["Networking", "Margem real", "Experiência", "Mercado internacional", "Cortar atravessadores"];
   return (
-    <section className="relative overflow-hidden bg-hero pt-28 pb-20 sm:pt-36 sm:pb-28">
+    <section className="relative overflow-hidden bg-hero py-20 sm:py-28">
       {/* subtle grid */}
       <div
         className="absolute inset-0 opacity-[0.06]"
