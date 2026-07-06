@@ -15,9 +15,14 @@ import {
   Sparkles,
   ShieldCheck,
   Quote,
+  Play,
+  Pause,
 } from "lucide-react";
 import giulianoAsset from "@/assets/giuliano.jpg.asset.json";
 import logo4sAsset from "@/assets/logo-4s.png.asset.json";
+import nextLevelAsset from "@/assets/next-level.mp4.asset.json";
+import posterAsset from "@/assets/hero-poster.jpg.asset.json";
+
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -190,56 +195,123 @@ function Hero() {
           </span>
         </Reveal>
 
-        <Reveal>
-          <h1 className="mt-6 font-display text-4xl font-black leading-[1.05] text-white sm:text-6xl lg:text-7xl">
-            Domine o mercado <br className="hidden sm:block" />
-            mais <span className="text-gradient-flame">lucrativo do mundo</span>
-            <br className="hidden sm:block" /> em apenas 1 dia.
-          </h1>
-        </Reveal>
+        <div className="mt-4 grid items-start gap-4 lg:grid-cols-2 lg:gap-6">
+          {/* left: copy + actions */}
+          <div>
+            <Reveal>
+              <h1 className="font-display text-3xl font-black leading-[1.05] text-white sm:text-4xl lg:text-5xl">
+                Domine o mercado <br className="hidden sm:block" />
+                mais <span className="text-gradient-flame">lucrativo do mundo</span>
+                <br className="hidden sm:block" /> em apenas 1 dia.
+              </h1>
+            </Reveal>
 
-        <Reveal>
-          <p className="mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl">
-            Um dia de imersão presencial em <span className="text-white">Santos/SP</span> para empresários que
-            querem aumentar margem, reduzir custos e descobrir oportunidades importando da China — ensinado por quem
-            opera há mais de 20 anos no mercado.
-          </p>
-        </Reveal>
+            <Reveal>
+              <div className="mt-5 lg:hidden">
+                <HeroVideo />
+              </div>
+            </Reveal>
 
-        <Reveal>
-          <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-            <CTAButton size="lg" className="animate-pulse-glow">
-              Garantir minha vaga
-            </CTAButton>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <ShieldCheck className="h-4 w-4 text-teal" />
-              Vagas limitadas — apenas <span className="text-white font-semibold">30 empresários</span> nesta edição
-            </div>
+
+            <Reveal>
+              <p className="mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
+                Um dia de imersão presencial em <span className="text-white">Santos/SP</span> para empresários que
+                querem aumentar margem, reduzir custos e descobrir oportunidades importando da China — ensinado por quem
+                opera há mais de 20 anos no mercado.
+              </p>
+            </Reveal>
+
+            <Reveal>
+              <div className="mt-6 flex flex-col items-start gap-4">
+                <CTAButton size="lg" className="animate-pulse-glow">
+                  Garantir minha vaga
+                </CTAButton>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <ShieldCheck className="h-4 w-4 text-teal" />
+                  Vagas limitadas — apenas <span className="text-white font-semibold">30 empresários</span> nesta edição
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal>
+              <div className="mt-8">
+                <Countdown />
+              </div>
+            </Reveal>
+
+            <Reveal>
+              <div className="mt-10 flex flex-wrap gap-2 border-t border-white/10 pt-6">
+                {tags.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-white/80"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </Reveal>
           </div>
-        </Reveal>
 
-        <Reveal>
-          <div className="mt-10">
-            <Countdown />
-          </div>
-        </Reveal>
-
-        <Reveal>
-          <div className="mt-12 flex flex-wrap gap-2 border-t border-white/10 pt-6">
-            {tags.map((t) => (
-              <span
-                key={t}
-                className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-white/80"
-              >
-                {t}
-              </span>
-            ))}
-          </div>
-        </Reveal>
+          {/* right: video (desktop only) */}
+          <Reveal className="hidden lg:block">
+            <HeroVideo />
+          </Reveal>
+        </div>
       </div>
+
     </section>
   );
 }
+
+function HeroVideo() {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+
+  const toggle = () => {
+    const v = ref.current;
+    if (!v) return;
+    if (v.paused) {
+      void v.play().then(() => setPlaying(true));
+    } else {
+      v.pause();
+      setPlaying(false);
+    }
+  };
+
+  return (
+    <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-navy-elevated shadow-elevated aspect-video group">
+      <video
+        ref={ref}
+        src={nextLevelAsset.url}
+        poster={posterAsset.url}
+        muted
+        loop
+        playsInline
+        className="h-full w-full object-cover"
+        aria-label="Vídeo de apresentação da Jornada 4S"
+      />
+      <button
+        type="button"
+        onClick={toggle}
+        className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal ${
+          playing ? "opacity-0 group-hover:opacity-100 bg-black/20" : "opacity-100 bg-black/30"
+        }`}
+        aria-label={playing ? "Pausar vídeo" : "Reproduzir vídeo"}
+      >
+        <div className="grid h-14 w-14 place-items-center rounded-full bg-white/10 backdrop-blur-sm ring-1 ring-white/20 transition-transform hover:scale-110 active:scale-95">
+          {playing ? (
+            <Pause className="h-6 w-6 text-white" />
+          ) : (
+            <Play className="h-6 w-6 text-white ml-0.5" />
+          )}
+        </div>
+      </button>
+    </div>
+  );
+}
+
+
 
 function ContextSection() {
   const items = [
