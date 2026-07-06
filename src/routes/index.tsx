@@ -187,7 +187,7 @@ function Hero() {
       />
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+        <div className="grid items-start gap-6 lg:grid-cols-2 lg:gap-10">
           {/* left: copy + actions */}
           <div>
             <Reveal>
