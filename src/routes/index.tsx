@@ -17,6 +17,7 @@ import {
   Quote,
 } from "lucide-react";
 import giulianoAsset from "@/assets/giuliano.jpg.asset.json";
+import logo4sAsset from "@/assets/logo-4s.png.asset.json";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
