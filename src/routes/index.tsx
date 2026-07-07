@@ -179,6 +179,12 @@ function Hero() {
 
       <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6">
         <Reveal>
+          <p className="mb-4 text-xs font-medium uppercase tracking-widest text-flame">
+            Exclusivo para empresas que faturam acima de R$100mil ao mês
+          </p>
+        </Reveal>
+
+        <Reveal>
           <span className="mx-auto inline-flex items-center gap-2 rounded-full border border-teal/40 bg-teal/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-teal">
             <Sparkles className="h-3.5 w-3.5" /> Imersão Jornada 4S
           </span>
