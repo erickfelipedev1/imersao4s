@@ -57,6 +57,24 @@ function useCountdown(target: Date) {
   return { d, h, m, s };
 }
 
+function useCountUp(target: number, durationMs: number, start: boolean) {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    if (!start) return;
+    let raf: number;
+    const startTime = performance.now();
+    const tick = (now: number) => {
+      const progress = Math.min((now - startTime) / durationMs, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setValue(Math.floor(eased * target));
+      if (progress < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [start, target, durationMs]);
+  return value;
+}
+
 function useReveal<T extends HTMLElement>() {
   const ref = useRef<T | null>(null);
   useEffect(() => {
@@ -377,6 +395,45 @@ function AuthoritySection() {
   );
 }
 
+function StatCounter() {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            setInView(true);
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.4 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  const target = 1_000_000_000;
+  const value = useCountUp(target, 2400, inView);
+  const done = value >= target;
+  const display = done
+    ? "1"
+    : (value / target).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+  return (
+    <div
+      ref={ref}
+      className="mt-4 font-display text-5xl font-black leading-none tabular-nums text-gradient-flame sm:text-7xl lg:text-8xl"
+    >
+      + US$ {display} bilhão
+    </div>
+  );
+}
+
 function PainSection() {
   return (
     <section className="border-t border-white/5 bg-navy py-20 sm:py-28">
@@ -413,9 +470,7 @@ function PainSection() {
         <Reveal>
           <div className="mt-6 rounded-3xl border border-flame/30 bg-navy-elevated/40 p-8 text-center sm:p-14">
             <div className="text-sm uppercase tracking-widest text-teal">Escala do mercado</div>
-            <div className="mt-4 font-display text-5xl font-black leading-none text-gradient-flame sm:text-7xl lg:text-8xl">
-              + US$ 1 bilhão
-            </div>
+            <StatCounter />
             <div className="mt-4 text-lg text-white/85 sm:text-xl">
               movimentados em importação pelo <span className="font-semibold text-white">Grupo Now</span> em 2026
             </div>
