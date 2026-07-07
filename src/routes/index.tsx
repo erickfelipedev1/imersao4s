@@ -157,16 +157,6 @@ function Header() {
   );
 }
 
-function MobileStickyCTA() {
-  return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-white/10 bg-navy-deep/95 p-3 backdrop-blur-lg sm:hidden">
-      <CTAButton className="w-full" size="lg">
-        Garantir minha vaga
-      </CTAButton>
-    </div>
-  );
-}
-
 function Countdown() {
   const { d, h, m, s } = useCountdown(EVENT_DATE);
   const Item = ({ v, l }: { v: number; l: string }) => (
