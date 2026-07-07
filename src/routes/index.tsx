@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 import {
   Ship,
   Package,
@@ -14,12 +15,22 @@ import {
   Clock,
   Sparkles,
   ShieldCheck,
-  Quote,
+  Play,
+  Volume2,
+  VolumeX,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import giulianoAsset from "@/assets/giuliano.jpg.asset.json";
 import logo4sAsset from "@/assets/logo-4s.png.asset.json";
 import nextLevelAsset from "@/assets/Video_HeadLine.mp4.asset.json";
 import posterAsset from "@/assets/hero-poster.jpg.asset.json";
+import depoimentoVitorVideo from "@/assets/depoimento-vitor.mp4.asset.json";
+import depoimentoVitorPoster from "@/assets/poster-vitor.jpg.asset.json";
+import depoimentoComunixVideo from "@/assets/depoimento-comunix.mp4.asset.json";
+import depoimentoComunixPoster from "@/assets/poster-comunix.jpg.asset.json";
+import cantonFairVideo from "@/assets/canton-fair-dia1.mp4.asset.json";
+import cantonFairPoster from "@/assets/poster-canton-fair.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -428,48 +439,175 @@ function ForWhomSection() {
   );
 }
 
+type VideoTestimonial = {
+  video: string;
+  poster: string;
+  name: string;
+  role: string;
+};
+
+function VideoTestimonialCard({ item }: { item: VideoTestimonial }) {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [playing, setPlaying] = useState(false);
+  const [muted, setMuted] = useState(true);
+
+  const togglePlay = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.paused) {
+      v.play();
+      setPlaying(true);
+    } else {
+      v.pause();
+      setPlaying(false);
+    }
+  };
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = !v.muted;
+    setMuted(v.muted);
+  };
+
+  return (
+    <div className="group relative aspect-[9/16] w-full overflow-hidden rounded-2xl border border-white/10 bg-navy-elevated shadow-elevated">
+      <video
+        ref={videoRef}
+        src={item.video}
+        poster={item.poster}
+        playsInline
+        muted={muted}
+        onPause={() => setPlaying(false)}
+        onEnded={() => setPlaying(false)}
+        className="h-full w-full object-cover"
+      />
+
+      <button
+        type="button"
+        onClick={togglePlay}
+        aria-label={playing ? "Pausar depoimento" : "Reproduzir depoimento"}
+        className="absolute inset-0 flex items-center justify-center bg-navy-deep/10 transition-colors hover:bg-navy-deep/25"
+      >
+        {!playing && (
+          <span className="grid h-16 w-16 place-items-center rounded-full bg-white/90 text-navy-deep shadow-lg transition-transform group-hover:scale-105">
+            <Play className="h-6 w-6 translate-x-0.5" fill="currentColor" />
+          </span>
+        )}
+      </button>
+
+      {playing && (
+        <button
+          type="button"
+          onClick={toggleMute}
+          aria-label={muted ? "Ativar som" : "Silenciar"}
+          className="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-navy-deep/70 text-white backdrop-blur transition-colors hover:bg-navy-deep/90"
+        >
+          {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+        </button>
+      )}
+
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-deep via-navy-deep/80 to-transparent p-5 pt-14">
+        <div className="font-display font-bold text-white">{item.name}</div>
+        <div className="text-sm text-white/70">{item.role}</div>
+      </div>
+    </div>
+  );
+}
+
 function TestimonialsSection() {
-  const items = [
+  const items: VideoTestimonial[] = [
     {
-      quote:
-        "Sai da imersão com clareza absoluta de como estruturar a primeira compra direto da fábrica. Recuperei margem que eu achava impossível.",
-      name: "Rafael M.",
-      role: "Sócio-diretor, indústria de utilidades",
+      video: depoimentoVitorVideo.url,
+      poster: depoimentoVitorPoster.url,
+      name: "Vitor",
+      // TODO: ajuste o cargo/empresa do Vitor aqui
+      role: "Participante da Jornada 4S",
     },
     {
-      quote:
-        "O nível de networking é o que mais me marcou. Sentei em uma mesa com empresários que já operam em outro patamar.",
-      name: "Carolina S.",
-      role: "CEO, distribuidora de eletroeletrônicos",
+      video: depoimentoComunixVideo.url,
+      poster: depoimentoComunixPoster.url,
+      name: "Comunix",
+      // TODO: ajuste o cargo/nome de quem fala pela Comunix aqui
+      role: "Empresa participante",
     },
     {
-      quote:
-        "A metodologia dos 6 pilares organiza tudo o que eu tentava fazer sozinho no braço. Mudou como enxergo meu negócio.",
-      name: "Eduardo P.",
-      role: "Diretor comercial, e-commerce",
+      video: cantonFairVideo.url,
+      poster: cantonFairPoster.url,
+      name: "Direto da Canton Fair",
+      role: "1º dia da maior feira multissetorial do mundo",
     },
   ];
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
+    emblaApi.on("select", onSelect);
+    onSelect();
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi]);
+
   return (
     <section className="border-t border-white/5 bg-navy py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
-          <h2 className="max-w-3xl font-display text-3xl font-black text-white sm:text-5xl">
-            Escute de quem já <span className="text-gradient-flame">trilhou a jornada.</span>
-          </h2>
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <h2 className="max-w-3xl font-display text-3xl font-black text-white sm:text-5xl">
+              Escute de quem já <span className="text-gradient-flame">trilhou a jornada.</span>
+            </h2>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => emblaApi?.scrollPrev()}
+                aria-label="Depoimento anterior"
+                className="grid h-11 w-11 place-items-center rounded-full border border-white/15 text-white transition-colors hover:border-teal/50 hover:text-teal"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                type="button"
+                onClick={() => emblaApi?.scrollNext()}
+                aria-label="Próximo depoimento"
+                className="grid h-11 w-11 place-items-center rounded-full border border-white/15 text-white transition-colors hover:border-teal/50 hover:text-teal"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
         </Reveal>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {items.map((t, i) => (
-            <Reveal key={i}>
-              <figure className="flex h-full flex-col rounded-2xl border border-white/10 bg-navy-elevated/50 p-6 transition-colors hover:border-teal/40">
-                <Quote className="h-8 w-8 text-teal" />
-                <blockquote className="mt-4 flex-1 text-white/90">{t.quote}</blockquote>
-                <figcaption className="mt-6 border-t border-white/10 pt-4">
-                  <div className="font-semibold text-white">{t.name}</div>
-                  <div className="text-sm text-muted-foreground">{t.role}</div>
-                </figcaption>
-              </figure>
-            </Reveal>
+        <Reveal>
+          <div className="mt-14 overflow-hidden" ref={emblaRef}>
+            <div className="-ml-4 flex sm:-ml-6">
+              {items.map((item) => (
+                <div
+                  key={item.name}
+                  className="min-w-0 flex-[0_0_78%] pl-4 sm:flex-[0_0_38%] sm:pl-6 lg:flex-[0_0_29%]"
+                >
+                  <VideoTestimonialCard item={item} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+
+        <div className="mt-6 flex justify-center gap-2">
+          {items.map((item, i) => (
+            <button
+              key={item.name}
+              type="button"
+              onClick={() => emblaApi?.scrollTo(i)}
+              aria-label={`Ir para depoimento ${i + 1}`}
+              className={`h-1.5 rounded-full transition-all ${
+                i === selectedIndex ? "w-6 bg-teal" : "w-1.5 bg-white/20"
+              }`}
+            />
           ))}
         </div>
       </div>
