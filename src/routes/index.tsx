@@ -23,7 +23,6 @@ import logo4sAsset from "@/assets/logo-4s.png.asset.json";
 import nextLevelAsset from "@/assets/next-level.mp4.asset.json";
 import posterAsset from "@/assets/hero-poster.jpg.asset.json";
 
-
 export const Route = createFileRoute("/")({
   component: LandingPage,
 });
@@ -122,10 +121,6 @@ function Header() {
       <div className="bg-flame-gradient px-4 py-2 text-center text-xs font-semibold uppercase tracking-widest text-white">
         Exclusivo para empresas que faturam acima de R$100mil ao mês
       </div>
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-        <LogoMark />
-        <CTAButton className="hidden sm:inline-flex">Garantir minha vaga</CTAButton>
-      </div>
     </header>
   );
 }
@@ -203,9 +198,9 @@ function Hero() {
 
         <Reveal>
           <p className="mx-auto mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            Um dia de imersão presencial em <span className="text-white">Santos/SP</span> para empresários que
-            querem aumentar margem, reduzir custos e descobrir oportunidades importando da China, ensinado por quem
-            opera há mais de 20 anos no mercado.
+            Um dia de imersão presencial em <span className="text-white">Santos/SP</span> para empresários que querem
+            aumentar margem, reduzir custos e descobrir oportunidades importando da China, ensinado por quem opera há
+            mais de 20 anos no mercado.
           </p>
         </Reveal>
 
@@ -240,7 +235,6 @@ function Hero() {
           </div>
         </Reveal>
       </div>
-
     </section>
   );
 }
@@ -281,18 +275,12 @@ function HeroVideo() {
         aria-label={playing ? "Pausar vídeo" : "Reproduzir vídeo"}
       >
         <div className="grid h-14 w-14 place-items-center rounded-full bg-white/10 backdrop-blur-sm ring-1 ring-white/20 transition-transform hover:scale-110 active:scale-95">
-          {playing ? (
-            <Pause className="h-6 w-6 text-white" />
-          ) : (
-            <Play className="h-6 w-6 text-white ml-0.5" />
-          )}
+          {playing ? <Pause className="h-6 w-6 text-white" /> : <Play className="h-6 w-6 text-white ml-0.5" />}
         </div>
       </button>
     </div>
   );
 }
-
-
 
 function ContextSection() {
   const items = [
@@ -321,9 +309,7 @@ function ContextSection() {
 
         <Reveal>
           <div className="mt-14 rounded-2xl border border-white/10 bg-navy-elevated/50 p-6 sm:p-10">
-            <h3 className="font-display text-xl font-bold text-white sm:text-2xl">
-              O que você vai descobrir em 1 dia
-            </h3>
+            <h3 className="font-display text-xl font-bold text-white sm:text-2xl">O que você vai descobrir em 1 dia</h3>
             <ul className="mt-8 grid gap-6 sm:grid-cols-2">
               {items.map(({ icon: Icon, text }) => (
                 <li key={text} className="flex items-start gap-4">
@@ -367,13 +353,10 @@ function AuthoritySection() {
               </figcaption>
             </figure>
           </div>
-
         </Reveal>
         <Reveal>
           <div>
-            <h2 className="font-display text-3xl font-black text-white sm:text-5xl">
-              Quem está à frente da jornada
-            </h2>
+            <h2 className="font-display text-3xl font-black text-white sm:text-5xl">Quem está à frente da jornada</h2>
             <p className="mt-6 text-lg text-white/85">
               <span className="font-semibold text-white">Giuliano Rédua</span> lidera a Jornada 4S dentro do{" "}
               <span className="font-semibold text-white">Grupo Now</span>, com mais de{" "}
@@ -418,9 +401,7 @@ function PainSection() {
             <div className="mt-4 font-display text-5xl font-black leading-none text-gradient-flame sm:text-7xl lg:text-8xl">
               + US$ 1 bilhão
             </div>
-            <div className="mt-4 text-lg text-white/85 sm:text-xl">
-              movimentados em importação pela 4S em 2026
-            </div>
+            <div className="mt-4 text-lg text-white/85 sm:text-xl">movimentados em importação pela 4S em 2026</div>
           </div>
         </Reveal>
       </div>
