@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import giulianoAsset from "@/assets/giuliano.jpg.asset.json";
 import logo4sAsset from "@/assets/logo-4s.png.asset.json";
-import nextLevelAsset from "@/assets/next-level.mp4.asset.json";
+import headlineAsset from "@/assets/Video_HeadLine.mp4.asset.json";
 import posterAsset from "@/assets/hero-poster.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -262,7 +262,7 @@ function HeroVideo() {
     <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-navy-elevated shadow-elevated aspect-video group">
       <video
         ref={ref}
-        src={nextLevelAsset.url}
+        src={headlineAsset.url}
         poster={posterAsset.url}
         muted
         loop
