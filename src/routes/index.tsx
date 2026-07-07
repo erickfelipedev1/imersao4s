@@ -32,6 +32,7 @@ import depoimentoComunixPoster from "@/assets/poster-comunix.jpg.asset.json";
 import cantonFairVideo from "@/assets/canton-fair-dia1.mp4.asset.json";
 import cantonFairPoster from "@/assets/poster-canton-fair.jpg.asset.json";
 import plateiaAsset from "@/assets/plateia-evento.jpg.asset.json";
+import cantonFairEquipeAsset from "@/assets/canton-fair-equipe.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -116,7 +117,7 @@ function CTAButton({
   return (
     <a
       href={CTA_HREF}
-      className={`inline-flex items-center justify-center gap-2 rounded-xl bg-flame font-semibold text-white shadow-lg shadow-flame transition-all hover:bg-flame-hover hover:-translate-y-0.5 active:translate-y-0 ${sz} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-xl bg-green-500 font-semibold text-white shadow-lg shadow-green-500/30 transition-all hover:bg-green-400 hover:-translate-y-0.5 active:translate-y-0 ${sz} ${className}`}
     >
       {children}
     </a>
@@ -397,13 +398,24 @@ function PainSection() {
         </Reveal>
 
         <Reveal>
-          <div className="mt-16 rounded-3xl border border-flame/30 bg-navy-elevated/40 p-8 text-center sm:p-14">
+          <figure className="mt-16 overflow-hidden rounded-2xl border border-white/10">
+            <img
+              src={cantonFairEquipeAsset.url}
+              alt="Equipe do Grupo Now na Canton Fair, na China"
+              className="h-64 w-full object-cover sm:h-96"
+              loading="lazy"
+            />
+          </figure>
+        </Reveal>
+
+        <Reveal>
+          <div className="mt-6 rounded-3xl border border-flame/30 bg-navy-elevated/40 p-8 text-center sm:p-14">
             <div className="text-sm uppercase tracking-widest text-teal">Escala do mercado</div>
             <div className="mt-4 font-display text-5xl font-black leading-none text-gradient-flame sm:text-7xl lg:text-8xl">
               + US$ 1 bilhão
             </div>
             <div className="mt-4 text-lg text-white/85 sm:text-xl">
-              movimentados em importação pelo Grupo Now em 2026
+              movimentados em importação pelo <span className="font-semibold text-white">Grupo Now</span> em 2026
             </div>
           </div>
         </Reveal>
