@@ -306,8 +306,11 @@ function ContextSection() {
               />
             </figure>
 
-            <div className="rounded-2xl border border-white/10 bg-navy-elevated/50 p-6 sm:p-10">
-              <h3 className="font-display text-xl font-bold text-white sm:text-2xl">
+            <div className="rounded-2xl border-2 border-teal/40 bg-gradient-to-br from-navy-elevated to-navy p-6 shadow-xl shadow-teal/10 sm:p-10">
+              <span className="inline-flex items-center gap-2 rounded-full border border-teal/40 bg-teal/10 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-teal">
+                Conteúdo do dia
+              </span>
+              <h3 className="mt-4 font-display text-2xl font-black text-white sm:text-3xl">
                 O que você vai descobrir em 1 dia
               </h3>
               <ul className="mt-8 grid gap-6">
@@ -705,8 +708,11 @@ function ClosingSection() {
 
         {/* included */}
         <Reveal>
-          <div className="mt-16 rounded-2xl border border-white/10 bg-navy-elevated/50 p-6 sm:p-10">
-            <h3 className="font-display text-xl font-bold text-white sm:text-2xl">O que está incluso</h3>
+          <div className="mt-16 rounded-2xl border-2 border-teal/40 bg-gradient-to-br from-navy-elevated to-navy p-6 shadow-xl shadow-teal/10 sm:p-10">
+            <span className="inline-flex items-center gap-2 rounded-full border border-teal/40 bg-teal/10 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-teal">
+              Pacote completo
+            </span>
+            <h3 className="mt-4 font-display text-2xl font-black text-white sm:text-3xl">O que está incluso</h3>
             <ul className="mt-8 grid gap-5 sm:grid-cols-2">
               {included.map(({ icon: Icon, text }) => (
                 <li key={text} className="flex items-start gap-3">
