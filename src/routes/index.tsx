@@ -121,6 +121,10 @@ function Header() {
       <div className="bg-flame-gradient px-4 py-2 text-center text-xs font-semibold uppercase tracking-widest text-white">
         Exclusivo para empresas que faturam acima de R$100mil ao mês
       </div>
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
+        <LogoMark />
+        <CTAButton className="hidden sm:inline-flex">Garantir minha vaga</CTAButton>
+      </div>
     </header>
   );
 }
