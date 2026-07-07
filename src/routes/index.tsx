@@ -116,7 +116,7 @@ function CTAButton({
   return (
     <a
       href={CTA_HREF}
-      className={`inline-flex items-center justify-center gap-2 rounded-xl bg-green-500 font-semibold text-white shadow-lg shadow-green-500/30 transition-all hover:bg-green-400 hover:-translate-y-0.5 active:translate-y-0 ${sz} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-xl bg-flame font-semibold text-white shadow-lg shadow-flame transition-all hover:bg-flame-hover hover:-translate-y-0.5 active:translate-y-0 ${sz} ${className}`}
     >
       {children}
     </a>
