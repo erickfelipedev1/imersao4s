@@ -91,7 +91,7 @@ function LogoMark({ className = "" }: { className?: string }) {
       </div>
     </div>
   );
-}*/
+}
 
 function CTAButton({
   children,
@@ -112,7 +112,7 @@ function CTAButton({
     </a>
   );
 }
-
+*/
 /* -------- sections -------- */
 
 function Header() {
