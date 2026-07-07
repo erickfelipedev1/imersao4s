@@ -23,7 +23,6 @@ import logo4sAsset from "@/assets/logo-4s.png.asset.json";
 import nextLevelAsset from "@/assets/next-level.mp4.asset.json";
 import posterAsset from "@/assets/hero-poster.jpg.asset.json";
 
-
 export const Route = createFileRoute("/")({
   component: LandingPage,
 });
@@ -107,7 +106,7 @@ function CTAButton({
   return (
     <a
       href={CTA_HREF}
-      className={`inline-flex items-center justify-center gap-2 rounded-xl bg-flame-gradient font-semibold text-white shadow-flame transition-all hover:brightness-110 hover:-translate-y-0.5 active:translate-y-0 ${sz} ${className}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-xl bg-green-500 font-semibold text-white shadow-lg shadow-green-500/30 transition-all hover:bg-green-400 hover:-translate-y-0.5 active:translate-y-0 ${sz} ${className}`}
     >
       {children}
     </a>
@@ -203,9 +202,9 @@ function Hero() {
 
         <Reveal>
           <p className="mx-auto mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            Um dia de imersão presencial em <span className="text-white">Santos/SP</span> para empresários que
-            querem aumentar margem, reduzir custos e descobrir oportunidades importando da China, ensinado por quem
-            opera há mais de 20 anos no mercado.
+            Um dia de imersão presencial em <span className="text-white">Santos/SP</span> para empresários que querem
+            aumentar margem, reduzir custos e descobrir oportunidades importando da China, ensinado por quem opera há
+            mais de 20 anos no mercado.
           </p>
         </Reveal>
 
@@ -240,7 +239,6 @@ function Hero() {
           </div>
         </Reveal>
       </div>
-
     </section>
   );
 }
@@ -281,18 +279,12 @@ function HeroVideo() {
         aria-label={playing ? "Pausar vídeo" : "Reproduzir vídeo"}
       >
         <div className="grid h-14 w-14 place-items-center rounded-full bg-white/10 backdrop-blur-sm ring-1 ring-white/20 transition-transform hover:scale-110 active:scale-95">
-          {playing ? (
-            <Pause className="h-6 w-6 text-white" />
-          ) : (
-            <Play className="h-6 w-6 text-white ml-0.5" />
-          )}
+          {playing ? <Pause className="h-6 w-6 text-white" /> : <Play className="h-6 w-6 text-white ml-0.5" />}
         </div>
       </button>
     </div>
   );
 }
-
-
 
 function ContextSection() {
   const items = [
@@ -321,9 +313,7 @@ function ContextSection() {
 
         <Reveal>
           <div className="mt-14 rounded-2xl border border-white/10 bg-navy-elevated/50 p-6 sm:p-10">
-            <h3 className="font-display text-xl font-bold text-white sm:text-2xl">
-              O que você vai descobrir em 1 dia
-            </h3>
+            <h3 className="font-display text-xl font-bold text-white sm:text-2xl">O que você vai descobrir em 1 dia</h3>
             <ul className="mt-8 grid gap-6 sm:grid-cols-2">
               {items.map(({ icon: Icon, text }) => (
                 <li key={text} className="flex items-start gap-4">
@@ -367,13 +357,10 @@ function AuthoritySection() {
               </figcaption>
             </figure>
           </div>
-
         </Reveal>
         <Reveal>
           <div>
-            <h2 className="font-display text-3xl font-black text-white sm:text-5xl">
-              Quem está à frente da jornada
-            </h2>
+            <h2 className="font-display text-3xl font-black text-white sm:text-5xl">Quem está à frente da jornada</h2>
             <p className="mt-6 text-lg text-white/85">
               <span className="font-semibold text-white">Giuliano Rédua</span> lidera a Jornada 4S dentro do{" "}
               <span className="font-semibold text-white">Grupo Now</span>, com mais de{" "}
@@ -419,7 +406,7 @@ function PainSection() {
               + US$ 1 bilhão
             </div>
             <div className="mt-4 text-lg text-white/85 sm:text-xl">
-              movimentados em importação pela 4S em 2026
+              movimentados em importação pelo Grupo Now em 2026
             </div>
           </div>
         </Reveal>
@@ -600,23 +587,46 @@ function ClosingSection() {
 
         {/* investment */}
         <Reveal>
-          <div className="mt-12 grid gap-8 rounded-3xl border-2 border-flame/60 bg-gradient-to-br from-navy-elevated to-navy p-8 shadow-flame sm:p-14 md:grid-cols-[1fr_auto] md:items-center">
-            <div>
-              <div className="text-sm uppercase tracking-widest text-teal">Investimento</div>
-              <div className="mt-3 flex items-baseline gap-3">
-                <span className="font-display text-6xl font-black text-white sm:text-7xl">R$ 297</span>
-                <span className="text-lg text-muted-foreground">/ vaga</span>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2">
+            <div className="grid gap-8 rounded-3xl border-2 border-flame/60 bg-gradient-to-br from-navy-elevated to-navy p-8 shadow-flame sm:p-10">
+              <div>
+                <div className="text-sm uppercase tracking-widest text-teal">Ingresso individual</div>
+                <div className="mt-3 flex items-baseline gap-3">
+                  <span className="font-display text-6xl font-black text-white sm:text-7xl">R$ 297</span>
+                  <span className="text-lg text-muted-foreground">/ vaga</span>
+                </div>
+                <p className="mt-4 max-w-md text-white/85">
+                  Condição especial para os primeiros inscritos. Vagas limitadas a 30 empresários por edição.
+                </p>
               </div>
-              <p className="mt-4 max-w-md text-white/85">
-                Condição especial para os primeiros inscritos. Vagas limitadas a 30 empresários por edição.
-              </p>
+              <div className="flex flex-col items-stretch gap-3">
+                <CTAButton size="lg" className="text-lg">
+                  Garantir minha vaga
+                </CTAButton>
+                <div className="text-center text-xs uppercase tracking-widest text-muted-foreground">
+                  Pagamento seguro
+                </div>
+              </div>
             </div>
-            <div className="flex flex-col items-stretch gap-3 md:items-end">
-              <CTAButton size="lg" className="text-lg">
-                Garantir minha vaga
-              </CTAButton>
-              <div className="text-center text-xs uppercase tracking-widest text-muted-foreground md:text-right">
-                Pagamento seguro
+
+            <div className="grid gap-8 rounded-3xl border-2 border-teal/60 bg-gradient-to-br from-navy-elevated to-navy p-8 sm:p-10">
+              <div>
+                <div className="text-sm uppercase tracking-widest text-teal">Ingresso duplo</div>
+                <div className="mt-3 flex items-baseline gap-3">
+                  <span className="font-display text-6xl font-black text-white sm:text-7xl">R$ 497</span>
+                  <span className="text-lg text-muted-foreground">/ 2 vagas</span>
+                </div>
+                <p className="mt-4 max-w-md text-white/85">
+                  Leve um sócio ou parceiro de negócio e economize levando os dois para a imersão.
+                </p>
+              </div>
+              <div className="flex flex-col items-stretch gap-3">
+                <CTAButton size="lg" className="text-lg">
+                  Garantir as 2 vagas
+                </CTAButton>
+                <div className="text-center text-xs uppercase tracking-widest text-muted-foreground">
+                  Pagamento seguro
+                </div>
               </div>
             </div>
           </div>
@@ -645,8 +655,8 @@ function LandingPage() {
       <Header />
       <main>
         <Hero />
-        <ContextSection />
         <AuthoritySection />
+        <ContextSection />
         <PainSection />
         <ForWhomSection />
         <TestimonialsSection />
