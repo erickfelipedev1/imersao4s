@@ -31,6 +31,7 @@ import depoimentoComunixVideo from "@/assets/depoimento-comunix.mp4.asset.json";
 import depoimentoComunixPoster from "@/assets/poster-comunix.jpg.asset.json";
 import cantonFairVideo from "@/assets/canton-fair-dia1.mp4.asset.json";
 import cantonFairPoster from "@/assets/poster-canton-fair.jpg.asset.json";
+import plateiaAsset from "@/assets/plateia-evento.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   component: LandingPage,
@@ -295,7 +296,18 @@ function ContextSection() {
         </Reveal>
 
         <Reveal>
-          <div className="mt-14 rounded-2xl border border-white/10 bg-navy-elevated/50 p-6 sm:p-10">
+          <figure className="mt-14 overflow-hidden rounded-2xl border border-white/10">
+            <img
+              src={plateiaAsset.url}
+              alt="Plateia acompanhando uma palestra da Jornada 4S"
+              className="h-64 w-full object-cover sm:h-96"
+              loading="lazy"
+            />
+          </figure>
+        </Reveal>
+
+        <Reveal>
+          <div className="mt-8 rounded-2xl border border-white/10 bg-navy-elevated/50 p-6 sm:p-10">
             <h3 className="font-display text-xl font-bold text-white sm:text-2xl">O que você vai descobrir em 1 dia</h3>
             <ul className="mt-8 grid gap-6 sm:grid-cols-2">
               {items.map(({ icon: Icon, text }) => (
