@@ -128,7 +128,7 @@ function Header() {
     </header>
   );
 }
-
+/*
 function MobileStickyCTA() {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-white/10 bg-navy-deep/95 p-3 backdrop-blur-lg sm:hidden">
@@ -137,7 +137,7 @@ function MobileStickyCTA() {
       </CTAButton>
     </div>
   );
-}
+}*/
 
 function Countdown() {
   const { d, h, m, s } = useCountdown(EVENT_DATE);
