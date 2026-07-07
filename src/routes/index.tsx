@@ -119,6 +119,9 @@ function CTAButton({
 function Header() {
   return (
     <header className="border-b border-white/10 bg-navy-deep/95 backdrop-blur-lg">
+      <div className="bg-flame-gradient px-4 py-2 text-center text-xs font-semibold uppercase tracking-widest text-white">
+        Exclusivo para empresas que faturam acima de R$100mil ao mês
+      </div>
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <LogoMark />
         <CTAButton className="hidden sm:inline-flex">Garantir minha vaga</CTAButton>
@@ -178,12 +181,6 @@ function Hero() {
       />
 
       <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6">
-        <Reveal>
-          <p className="mb-4 text-xs font-medium uppercase tracking-widest text-flame">
-            Exclusivo para empresas que faturam acima de R$100mil ao mês
-          </p>
-        </Reveal>
-
         <Reveal>
           <span className="mx-auto inline-flex items-center gap-2 rounded-full border border-teal/40 bg-teal/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-teal">
             <Sparkles className="h-3.5 w-3.5" /> Imersão Jornada 4S
