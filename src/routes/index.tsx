@@ -355,7 +355,7 @@ function ContextSection() {
 function AuthoritySection() {
   return (
     <section className="border-t border-white/5 bg-navy-deep py-20 sm:py-28">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 md:grid-cols-[auto_1fr]">
+      <div className="mx-auto grid max-w-6xl items-center justify-items-center gap-12 px-4 sm:px-6 md:grid-cols-[auto_1fr] md:justify-items-start">
         <Reveal>
           <div className="relative mx-auto md:mx-0">
             <div
@@ -363,11 +363,11 @@ function AuthoritySection() {
               style={{ background: "var(--flame)" }}
               aria-hidden
             />
-            <figure className="relative overflow-hidden rounded-3xl border border-white/10 bg-navy-elevated shadow-2xl w-72 sm:w-80">
+            <figure className="relative overflow-hidden rounded-3xl border border-white/10 bg-navy-elevated shadow-2xl w-80 sm:w-80">
               <img
                 src={giulianoAsset.url}
                 alt="Giuliano Rédua, mentor da Jornada 4S"
-                className="block h-96 w-full object-cover sm:h-[420px]"
+                className="block h-[420px] w-full object-cover sm:h-[460px]"
                 loading="lazy"
               />
               <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-deep via-navy-deep/85 to-transparent px-6 pb-6 pt-16">
@@ -377,7 +377,7 @@ function AuthoritySection() {
           </div>
         </Reveal>
         <Reveal>
-          <div>
+          <div className="text-center md:text-left">
             <h2 className="font-display text-3xl font-black text-white sm:text-5xl">Quem está à frente da jornada</h2>
             <p className="mt-6 text-lg text-white/85">
               <span className="font-semibold text-white">Giuliano Rédua</span> lidera a Jornada 4S dentro do{" "}
@@ -763,7 +763,7 @@ function ClosingSection() {
 
         {/* included */}
         <Reveal>
-          <div className="mt-16 rounded-2xl border-2 border-teal/40 bg-gradient-to-br from-navy-elevated to-navy p-6 shadow-xl shadow-teal/10 sm:p-10">
+          <div className="mt-16 rounded-2xl border-2 border-teal/50 bg-gradient-to-br from-navy-elevated to-navy p-8 shadow-2xl shadow-teal/15 ring-1 ring-teal/20 sm:p-10">
             <span className="inline-flex items-center gap-2 rounded-full border border-teal/40 bg-teal/10 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-teal">
               Pacote completo
             </span>
@@ -836,7 +836,7 @@ function ClosingSection() {
 
 function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-navy-deep py-10 pb-24 sm:pb-10">
+    <footer className="border-t border-white/10 bg-navy-deep py-10 pb-10 sm:pb-10">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6">
         <LogoMark />
         <div className="text-xs text-muted-foreground">
@@ -861,7 +861,6 @@ function LandingPage() {
         <ClosingSection />
       </main>
       <Footer />
-      <MobileStickyCTA />
     </div>
   );
 }
