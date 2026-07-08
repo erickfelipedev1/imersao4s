@@ -211,7 +211,7 @@ function Hero() {
           <p className="mx-auto mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
             Um dia de imersão presencial em <span className="text-white">Santos/SP</span> para empresários que querem
             aumentar margem, reduzir custos e descobrir oportunidades importando da China, ensinado por quem opera há
-            mais de 20 anos no mercado.
+            mais de 30 anos no mercado.
           </p>
         </Reveal>
 
