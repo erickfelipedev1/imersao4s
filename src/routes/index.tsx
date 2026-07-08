@@ -211,7 +211,7 @@ function Hero() {
           <p className="mx-auto mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
             Um dia de imersão presencial em <span className="text-white">Santos/SP</span> para empresários que querem
             aumentar margem, reduzir custos e descobrir oportunidades importando da China, ensinado por quem opera há
-            mais de 30 anos no mercado.
+            mais de 20 anos no mercado.
           </p>
         </Reveal>
 
@@ -900,10 +900,11 @@ function ClosingSection() {
               <div>
                 <div className="text-sm uppercase tracking-widest text-teal">Ingresso individual</div>
                 <div className="mt-3 flex flex-nowrap items-baseline gap-2">
-                  <span className="font-display text-4xl font-black text-white sm:text-6xl lg:text-7xl">R$ 297</span>
-                  <span className="whitespace-nowrap text-base text-muted-foreground sm:text-lg">/ vaga</span>
+                  <span className="font-display text-4xl font-black text-white sm:text-6xl lg:text-7xl">
+                    10x R$ 29,70
+                  </span>
                 </div>
-                <div className="mt-2 text-sm text-muted-foreground">ou 10x de R$ 29,70</div>
+                <div className="mt-2 text-sm text-muted-foreground">ou R$ 297 à vista / vaga</div>
                 <p className="mt-4 max-w-md text-white/85">
                   Condição especial para os primeiros inscritos. Vagas limitadas a 30 empresários por edição.
                 </p>
@@ -922,10 +923,11 @@ function ClosingSection() {
               <div>
                 <div className="text-sm uppercase tracking-widest text-teal">Ingresso duplo</div>
                 <div className="mt-3 flex flex-nowrap items-baseline gap-2">
-                  <span className="font-display text-4xl font-black text-white sm:text-6xl lg:text-7xl">R$ 497</span>
-                  <span className="whitespace-nowrap text-base text-muted-foreground sm:text-lg">/ 2 vagas</span>
+                  <span className="font-display text-4xl font-black text-white sm:text-6xl lg:text-7xl">
+                    10x R$ 49,70
+                  </span>
                 </div>
-                <div className="mt-2 text-sm text-muted-foreground">ou 10x de R$ 49,70</div>
+                <div className="mt-2 text-sm text-muted-foreground">ou R$ 497 à vista / 2 vagas</div>
                 <p className="mt-4 max-w-md text-white/85">
                   Leve um sócio ou parceiro de negócio e economize levando os dois para a imersão.
                 </p>
