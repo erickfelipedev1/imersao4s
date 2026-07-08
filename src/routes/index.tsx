@@ -900,9 +900,9 @@ function ClosingSection() {
             <div className="grid gap-8 rounded-3xl border-2 border-flame/60 bg-gradient-to-br from-navy-elevated to-navy p-8 shadow-flame sm:p-10">
               <div>
                 <div className="text-sm uppercase tracking-widest text-teal">Ingresso individual</div>
-                <div className="mt-3 flex items-baseline gap-3">
-                  <span className="font-display text-6xl font-black text-white sm:text-7xl">R$ 297</span>
-                  <span className="text-lg text-muted-foreground">/ vaga</span>
+                <div className="mt-3 flex flex-nowrap items-baseline gap-2">
+                  <span className="font-display text-4xl font-black text-white sm:text-6xl lg:text-7xl">R$ 297</span>
+                  <span className="whitespace-nowrap text-base text-muted-foreground sm:text-lg">/ vaga</span>
                 </div>
                 <div className="mt-2 text-sm text-muted-foreground">ou 12x de R$ 24,75</div>
                 <p className="mt-4 max-w-md text-white/85">
@@ -922,9 +922,9 @@ function ClosingSection() {
             <div className="grid gap-8 rounded-3xl border-2 border-teal/60 bg-gradient-to-br from-navy-elevated to-navy p-8 sm:p-10">
               <div>
                 <div className="text-sm uppercase tracking-widest text-teal">Ingresso duplo</div>
-                <div className="mt-3 flex items-baseline gap-3">
-                  <span className="font-display text-6xl font-black text-white sm:text-7xl">R$ 497</span>
-                  <span className="text-lg text-muted-foreground">/ 2 vagas</span>
+                <div className="mt-3 flex flex-nowrap items-baseline gap-2">
+                  <span className="font-display text-4xl font-black text-white sm:text-6xl lg:text-7xl">R$ 497</span>
+                  <span className="whitespace-nowrap text-base text-muted-foreground sm:text-lg">/ 2 vagas</span>
                 </div>
                 <div className="mt-2 text-sm text-muted-foreground">ou 12x de R$ 41,42</div>
                 <p className="mt-4 max-w-md text-white/85">
