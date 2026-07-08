@@ -677,6 +677,52 @@ function TestimonialsSection() {
   );
 }
 
+function InfoHighlightsSection() {
+  return (
+    <section className="border-t border-white/5 bg-navy py-20 sm:py-28">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="grid gap-6 md:grid-cols-2 md:items-stretch">
+          <Reveal>
+            <div className="h-full rounded-2xl border-2 border-teal/40 bg-gradient-to-br from-navy-elevated to-navy p-8 shadow-xl shadow-teal/10 sm:p-10">
+              <span className="inline-flex items-center gap-2 rounded-full border border-teal/40 bg-teal/10 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-teal">
+                <Package className="h-3.5 w-3.5" /> A Canton Fair
+              </span>
+              <h3 className="mt-4 font-display text-2xl font-black text-white sm:text-3xl">
+                A maior feira multissetorial do mundo.
+              </h3>
+              <p className="mt-4 text-white/85">
+                Todos os anos, milhares de empresários do mundo inteiro visitam a Canton Fair para encontrar
+                fabricantes, lançar produtos e criar parcerias estratégicas, direto na origem, sem camadas de
+                intermediário no meio do caminho.
+              </p>
+              <p className="mt-4 text-white/85">
+                Na imersão, você entende por que ela é considerada a maior feira multissetorial do mundo e como uma
+                visita a esse ambiente pode virar estratégia de crescimento, não apenas uma viagem.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <div className="h-full rounded-2xl border-2 border-flame/40 bg-gradient-to-br from-navy-elevated to-navy p-8 shadow-xl shadow-flame/10 sm:p-10">
+              <span className="inline-flex items-center gap-2 rounded-full border border-flame/40 bg-flame/10 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-flame">
+                <ShieldCheck className="h-3.5 w-3.5" /> Sobre a Jornada 4S
+              </span>
+              <h3 className="mt-4 font-display text-2xl font-black text-white sm:text-3xl">
+                Suporte antes, durante e depois.
+              </h3>
+              <p className="mt-4 text-white/85">
+                A Jornada 4S acompanha empresários antes, durante e depois da Canton Fair, oferecendo preparação,
+                estratégia e suporte para transformar oportunidades em resultados, com o método dos 4 estágios que você
+                conhecerá nesta imersão.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ClosingSection() {
   const included = [
     { icon: Calendar, text: "1 dia de imersão presencial" },
@@ -837,6 +883,7 @@ function LandingPage() {
         <PainSection />
         <ForWhomSection />
         <TestimonialsSection />
+        <InfoHighlightsSection />
         <ClosingSection />
       </main>
       <Footer />
