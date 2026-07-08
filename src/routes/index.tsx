@@ -170,7 +170,7 @@ function EventHighlight() {
 function Hero() {
   const tags = ["Networking", "Margem real", "Experiência", "Mercado internacional", "Cortar atravessadores"];
   return (
-    <section className="relative overflow-hidden bg-hero py-20 sm:py-28">
+    <section className="relative overflow-hidden bg-hero py-12 sm:py-16">
       {/* subtle grid */}
       <div
         className="absolute inset-0 opacity-[0.06]"
@@ -277,7 +277,7 @@ function ContextSection() {
     { icon: Plane, text: "Como transformar uma viagem em estratégia de crescimento" },
   ];
   return (
-    <section className="border-t border-white/5 bg-navy py-20 sm:py-28">
+    <section className="border-t border-white/5 bg-navy py-12 sm:py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
           <h2 className="max-w-3xl font-display text-3xl font-black text-white sm:text-5xl">
@@ -334,7 +334,7 @@ function ContextSection() {
 
 function AuthoritySection() {
   return (
-    <section className="border-t border-white/5 bg-navy-deep py-20 sm:py-28">
+    <section className="border-t border-white/5 bg-navy-deep py-12 sm:py-16">
       <div className="mx-auto grid max-w-6xl items-center justify-items-center gap-12 px-4 sm:px-6 md:grid-cols-[auto_1fr] md:justify-items-start">
         <Reveal>
           <div className="relative mx-auto md:mx-0">
@@ -416,7 +416,7 @@ function StatCounter() {
 
 function PainSection() {
   return (
-    <section className="border-t border-white/5 bg-navy py-20 sm:py-28">
+    <section className="border-t border-white/5 bg-navy py-12 sm:py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
           <span className="inline-flex items-center gap-2 rounded-full border border-flame/40 bg-flame/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-flame">
@@ -471,7 +471,7 @@ function ForWhomSection() {
     "Busca networking com outros empresários da área",
   ];
   return (
-    <section className="border-t border-white/5 bg-navy-deep py-20 sm:py-28">
+    <section className="border-t border-white/5 bg-navy-deep py-12 sm:py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
           <span className="inline-flex items-center gap-2 rounded-full border border-teal/40 bg-teal/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-teal">
@@ -617,7 +617,7 @@ function TestimonialsSection() {
   }, [emblaApi]);
 
   return (
-    <section className="border-t border-white/5 bg-navy py-20 sm:py-28">
+    <section className="border-t border-white/5 bg-navy py-12 sm:py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
           <div className="flex flex-wrap items-end justify-between gap-6">
@@ -680,7 +680,7 @@ function TestimonialsSection() {
 
 function InfoHighlightsSection() {
   return (
-    <section className="border-t border-white/5 bg-navy py-20 sm:py-28">
+    <section className="border-t border-white/5 bg-navy py-12 sm:py-16">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid gap-6 md:grid-cols-2 md:items-stretch">
           <Reveal>
@@ -782,7 +782,7 @@ function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="border-t border-white/5 bg-navy-deep py-20 sm:py-28">
+    <section className="border-t border-white/5 bg-navy-deep py-12 sm:py-16">
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <Reveal className="text-center">
           <span className="mx-auto inline-flex items-center gap-2 rounded-full border border-teal/40 bg-teal/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-teal">
@@ -822,7 +822,7 @@ function ClosingSection() {
   ];
 
   return (
-    <section id="inscricao" className="relative overflow-hidden border-t border-white/5 bg-navy-deep py-20 sm:py-28">
+    <section id="inscricao" className="relative overflow-hidden border-t border-white/5 bg-navy-deep py-12 sm:py-16">
       <div
         className="absolute inset-0 opacity-40"
         style={{ background: "radial-gradient(circle at 50% 0%, oklch(0.28 0.08 275) 0%, transparent 60%)" }}
