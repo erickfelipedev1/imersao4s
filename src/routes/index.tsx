@@ -20,6 +20,7 @@ import {
   VolumeX,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
 } from "lucide-react";
 import giulianoAsset from "@/assets/giuliano.jpg.asset.json";
 import logo4sAsset from "@/assets/logo-4s.png.asset.json";
@@ -723,6 +724,93 @@ function InfoHighlightsSection() {
   );
 }
 
+function FAQItem({
+  question,
+  answer,
+  isOpen,
+  onToggle,
+}: {
+  question: string;
+  answer: string;
+  isOpen: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <div className="overflow-hidden rounded-2xl border border-white/10 bg-navy-elevated/40">
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={isOpen}
+        className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left sm:px-8"
+      >
+        <span className="font-display text-base font-bold text-white sm:text-lg">{question}</span>
+        <ChevronDown
+          className={`h-5 w-5 shrink-0 text-teal transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+        />
+      </button>
+      <div
+        className={`grid transition-all duration-300 ease-in-out ${
+          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <p className="px-6 pb-6 text-white/80 sm:px-8">{answer}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function FAQSection() {
+  const faqs = [
+    {
+      question: "Preciso já importar da China para participar?",
+      answer:
+        "Não. A imersão foi criada especialmente para quem ainda não começou, mas quer dar esse passo com segurança, assim como para quem já importa e quer otimizar fornecedor, negociação e margem.",
+    },
+    {
+      question: "Serve para qualquer segmento de negócio?",
+      answer:
+        "Sim. Não importa o setor. Se você compra produto ou insumo de terceiros e quer aumentar margem eliminando intermediários, o modelo se aplica ao seu negócio.",
+    },
+    {
+      question: "É só palestra ou tem algo prático?",
+      answer:
+        "A imersão foi desenhada para que você saia com clareza e um plano de ação, você terá participação ativa no evento e acesso para tirar dúvidas com especialista no palco.",
+    },
+  ];
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  return (
+    <section className="border-t border-white/5 bg-navy-deep py-20 sm:py-28">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6">
+        <Reveal className="text-center">
+          <span className="mx-auto inline-flex items-center gap-2 rounded-full border border-teal/40 bg-teal/10 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-teal">
+            Dúvidas
+          </span>
+          <h2 className="mx-auto mt-6 max-w-xl font-display text-3xl font-black text-white sm:text-5xl">
+            Ainda tem <span className="text-gradient-flame">dúvida?</span>
+          </h2>
+        </Reveal>
+
+        <Reveal>
+          <div className="mt-12 space-y-4">
+            {faqs.map((faq, i) => (
+              <FAQItem
+                key={faq.question}
+                question={faq.question}
+                answer={faq.answer}
+                isOpen={openIndex === i}
+                onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+              />
+            ))}
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 function ClosingSection() {
   const included = [
     { icon: Calendar, text: "1 dia de imersão presencial" },
@@ -885,6 +973,7 @@ function LandingPage() {
         <TestimonialsSection />
         <InfoHighlightsSection />
         <ClosingSection />
+        <FAQSection />
       </main>
       <Footer />
     </div>
