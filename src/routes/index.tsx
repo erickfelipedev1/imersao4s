@@ -349,8 +349,8 @@ function AuthoritySection() {
                 loading="lazy"
               />
               <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-deep via-navy-deep/85 to-transparent px-6 pb-6 pt-16">
-                <h3 className="font-display text-2xl font-black text-white sm:text-3xl">Giuliano Rédua</h3>
-                <p className="mt-1 text-sm font-medium text-teal sm:text-base">CEO do Grupo Now</p>
+                <h3 className="font-display text-2xl font-black text-white text-center sm:text-3xl">Giuliano Rédua</h3>
+                <p className="mt-1 text-center text-sm font-medium text-white sm:text-base">CEO do Grupo Now</p>
               </figcaption>
             </figure>
           </div>
