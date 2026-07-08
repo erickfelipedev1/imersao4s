@@ -38,24 +38,12 @@ export const Route = createFileRoute("/")({
   component: LandingPage,
 });
 
-const EVENT_DATE = new Date("2026-07-29T09:00:00-03:00");
+const EVENT_DATE_LABEL = "4 DE AGOSTO";
+const EVENT_TIME_LABEL = "14:00 ÀS 19:00";
+const EVENT_CITY_LABEL = "SANTOS - SP";
 const CTA_HREF = "#inscricao";
 
 /* -------- utilities -------- */
-
-function useCountdown(target: Date) {
-  const [now, setNow] = useState(() => Date.now());
-  useEffect(() => {
-    const id = setInterval(() => setNow(Date.now()), 1000);
-    return () => clearInterval(id);
-  }, []);
-  const diff = Math.max(0, target.getTime() - now);
-  const d = Math.floor(diff / 86400000);
-  const h = Math.floor((diff / 3600000) % 24);
-  const m = Math.floor((diff / 60000) % 60);
-  const s = Math.floor((diff / 1000) % 60);
-  return { d, h, m, s };
-}
 
 function useCountUp(target: number, durationMs: number, start: boolean) {
   const [value, setValue] = useState(0);
@@ -157,22 +145,23 @@ function Header() {
   );
 }
 
-function Countdown() {
-  const { d, h, m, s } = useCountdown(EVENT_DATE);
-  const Item = ({ v, l }: { v: number; l: string }) => (
-    <div className="flex flex-col items-center rounded-lg border border-white/10 bg-navy-elevated/60 px-3 py-2 min-w-[64px]">
-      <div className="font-display text-2xl font-black text-white tabular-nums sm:text-3xl">
-        {String(v).padStart(2, "0")}
-      </div>
-      <div className="text-[10px] uppercase tracking-widest text-muted-foreground">{l}</div>
-    </div>
-  );
+function EventHighlight() {
   return (
-    <div className="flex items-center gap-2 sm:gap-3">
-      <Item v={d} l="dias" />
-      <Item v={h} l="hrs" />
-      <Item v={m} l="min" />
-      <Item v={s} l="seg" />
+    <div className="inline-flex flex-wrap items-center justify-center gap-x-3 gap-y-2 rounded-xl border border-teal/40 bg-navy-elevated/60 px-5 py-3 sm:gap-x-4 sm:px-7 sm:py-4">
+      <span className="inline-flex items-center gap-2 font-display text-lg font-black tracking-wide text-white sm:text-2xl">
+        <MapPin className="h-5 w-5 shrink-0 text-teal" />
+        {EVENT_CITY_LABEL}
+      </span>
+      <span className="hidden h-6 w-px bg-white/15 sm:block" aria-hidden />
+      <span className="inline-flex items-center gap-2 font-display text-lg font-black tracking-wide text-white sm:text-2xl">
+        <Calendar className="h-5 w-5 shrink-0 text-teal" />
+        {EVENT_DATE_LABEL}
+      </span>
+      <span className="hidden h-6 w-px bg-white/15 sm:block" aria-hidden />
+      <span className="inline-flex items-center gap-2 font-display text-lg font-black tracking-wide text-gradient-flame sm:text-2xl">
+        <Clock className="h-5 w-5 shrink-0 text-flame" />
+        DAS {EVENT_TIME_LABEL}
+      </span>
     </div>
   );
 }
@@ -240,7 +229,7 @@ function Hero() {
 
         <Reveal>
           <div className="mt-8 flex justify-center">
-            <Countdown />
+            <EventHighlight />
           </div>
         </Reveal>
 
@@ -725,11 +714,11 @@ function ClosingSection() {
                 </div>
                 <div className="flex items-start gap-3">
                   <Calendar className="mt-1 h-5 w-5 shrink-0 text-teal" />
-                  <span>29 de julho, quarta-feira</span>
+                  <span>4 de agosto, terça-feira</span>
                 </div>
                 <div className="flex items-start gap-3">
                   <Clock className="mt-1 h-5 w-5 shrink-0 text-teal" />
-                  <span>Um dia inteiro de imersão presencial</span>
+                  <span>Das 14:00 às 19:00</span>
                 </div>
               </div>
               <p className="mt-6 text-muted-foreground">
