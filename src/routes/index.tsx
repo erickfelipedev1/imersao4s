@@ -813,12 +813,12 @@ function FAQSection() {
 
 function ClosingSection() {
   const included = [
-    { icon: Calendar, text: "1 dia de imersão presencial" },
-    { icon: BarChart3, text: "Metodologia completa dos 6 pilares da Jornada 4S" },
-    { icon: TrendingUp, text: "Diagnóstico express da operação" },
-    { icon: Users, text: "Sessão de perguntas e respostas" },
-    { icon: Map, text: "Networking com empresários" },
-    { icon: ShieldCheck, text: "Apenas 30 participantes" },
+    { icon: Calendar, text: "1 dia de imersão presencial na Connect, Boqueirão/Santos" },
+    { icon: BarChart3, text: "O método completo dos 4 estágios da importação" },
+    { icon: TrendingUp, text: "Diagnóstico express do seu projeto e análise de caso" },
+    { icon: Users, text: "Sessão de perguntas e respostas com a equipe 4S" },
+    { icon: Map, text: "Networking com empresários de diferentes segmentos" },
+    { icon: ShieldCheck, text: "Vagas limitadas: apenas 30 participantes nesta turma" },
   ];
 
   return (
