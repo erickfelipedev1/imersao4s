@@ -25,7 +25,6 @@ import {
 import giulianoAsset from "@/assets/giuliano.jpg.asset.json";
 import logo4sAsset from "@/assets/logo-4s.png.asset.json";
 import nextLevelAsset from "@/assets/Video_HeadLine.mp4.asset.json";
-import posterAsset from "@/assets/hero-poster.jpg.asset.json";
 import depoimentoVitorVideo from "@/assets/depoimento-vitor.mp4.asset.json";
 import depoimentoVitorPoster from "@/assets/poster-vitor.jpg.asset.json";
 import depoimentoComunixVideo from "@/assets/depoimento-comunix.mp4.asset.json";
@@ -256,7 +255,6 @@ function HeroVideo() {
     <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-navy-elevated shadow-elevated aspect-video">
       <video
         src={nextLevelAsset.url}
-        poster={posterAsset.url}
         autoPlay
         muted
         loop
