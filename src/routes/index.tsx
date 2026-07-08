@@ -901,7 +901,8 @@ function ClosingSection() {
                 <div className="text-sm uppercase tracking-widest text-teal">Ingresso individual</div>
                 <div className="mt-3 flex flex-nowrap items-baseline gap-2">
                   <span className="whitespace-nowrap font-display text-3xl font-black text-white sm:text-4xl lg:text-5xl">
-                    10x R$ 29,70
+                    <span className="text-lg font-medium text-muted-foreground sm:text-xl lg:text-2xl">10x</span> R$
+                    29,70
                   </span>
                 </div>
                 <div className="mt-2 text-sm text-muted-foreground">ou R$ 297 à vista / vaga</div>
@@ -924,7 +925,8 @@ function ClosingSection() {
                 <div className="text-sm uppercase tracking-widest text-teal">Ingresso duplo</div>
                 <div className="mt-3 flex flex-nowrap items-baseline gap-2">
                   <span className="whitespace-nowrap font-display text-3xl font-black text-white sm:text-4xl lg:text-5xl">
-                    10x R$ 49,70
+                    <span className="text-lg font-medium text-muted-foreground sm:text-xl lg:text-2xl">10x</span> R$
+                    49,70
                   </span>
                 </div>
                 <div className="mt-2 text-sm text-muted-foreground">ou R$ 497 à vista / 2 vagas</div>
