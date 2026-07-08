@@ -584,8 +584,7 @@ function TestimonialsSection() {
     {
       video: depoimentoVitorVideo.url,
       poster: depoimentoVitorPoster.url,
-      name: "Vitor",
-      // TODO: ajuste o cargo/empresa do Vitor aqui
+      name: "Victor Royal Atacadista",
       role: "Participante da Jornada 4S",
     },
     {
