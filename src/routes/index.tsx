@@ -905,7 +905,7 @@ function ClosingSection() {
                   <span className="font-display text-4xl font-black text-white sm:text-6xl lg:text-7xl">R$ 297</span>
                   <span className="whitespace-nowrap text-base text-muted-foreground sm:text-lg">/ vaga</span>
                 </div>
-                <div className="mt-2 text-sm text-muted-foreground">ou 12x de R$ 24,75</div>
+                <div className="mt-2 text-sm text-muted-foreground">ou 10x de R$ 29,70</div>
                 <p className="mt-4 max-w-md text-white/85">
                   Condição especial para os primeiros inscritos. Vagas limitadas a 30 empresários por edição.
                 </p>
@@ -927,7 +927,7 @@ function ClosingSection() {
                   <span className="font-display text-4xl font-black text-white sm:text-6xl lg:text-7xl">R$ 497</span>
                   <span className="whitespace-nowrap text-base text-muted-foreground sm:text-lg">/ 2 vagas</span>
                 </div>
-                <div className="mt-2 text-sm text-muted-foreground">ou 12x de R$ 41,42</div>
+                <div className="mt-2 text-sm text-muted-foreground">ou 10x de R$ 49,70</div>
                 <p className="mt-4 max-w-md text-white/85">
                   Leve um sócio ou parceiro de negócio e economize levando os dois para a imersão.
                 </p>
