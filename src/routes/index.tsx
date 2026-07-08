@@ -900,7 +900,7 @@ function ClosingSection() {
               <div>
                 <div className="text-sm uppercase tracking-widest text-teal">Ingresso individual</div>
                 <div className="mt-3 flex flex-nowrap items-baseline gap-2">
-                  <span className="font-display text-4xl font-black text-white sm:text-6xl lg:text-7xl">
+                  <span className="whitespace-nowrap font-display text-3xl font-black text-white sm:text-4xl lg:text-5xl">
                     10x R$ 29,70
                   </span>
                 </div>
@@ -923,7 +923,7 @@ function ClosingSection() {
               <div>
                 <div className="text-sm uppercase tracking-widest text-teal">Ingresso duplo</div>
                 <div className="mt-3 flex flex-nowrap items-baseline gap-2">
-                  <span className="font-display text-4xl font-black text-white sm:text-6xl lg:text-7xl">
+                  <span className="whitespace-nowrap font-display text-3xl font-black text-white sm:text-4xl lg:text-5xl">
                     10x R$ 49,70
                   </span>
                 </div>
