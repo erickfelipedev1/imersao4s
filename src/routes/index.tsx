@@ -511,7 +511,7 @@ type VideoTestimonial = {
 
 function VideoTestimonialCard({ item }: { item: VideoTestimonial }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [playing, setPlaying] = useState(false);
+  const [playing, setPlaying] = useState(true);
   const [muted, setMuted] = useState(true);
 
   const togglePlay = () => {
@@ -540,10 +540,12 @@ function VideoTestimonialCard({ item }: { item: VideoTestimonial }) {
         ref={videoRef}
         src={item.video}
         poster={item.poster}
+        autoPlay
+        loop
         playsInline
         muted={muted}
         onPause={() => setPlaying(false)}
-        onEnded={() => setPlaying(false)}
+        onPlay={() => setPlaying(true)}
         className="h-full w-full object-cover"
       />
 
