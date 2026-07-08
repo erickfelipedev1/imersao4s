@@ -139,7 +139,7 @@ function Header() {
       <div className="bg-flame-gradient px-4 py-2 text-center text-xs font-semibold uppercase tracking-widest text-white">
         Exclusivo para empresas que faturam acima de R$100mil ao mês
       </div>
-      <div className="mx-auto flex max-w-6xl items-center justify-center px-4 py-3 sm:px-6">
+      <div className="mx-auto flex max-w-6xl items-center justify-center px-4 py-2 sm:px-6">
         <LogoMark />
       </div>
     </header>
@@ -170,7 +170,7 @@ function EventHighlight() {
 function Hero() {
   const tags = ["Networking", "Margem real", "Experiência", "Mercado internacional", "Cortar atravessadores"];
   return (
-    <section className="relative overflow-hidden bg-hero py-12 sm:py-16">
+    <section className="relative overflow-hidden bg-hero pb-12 pt-8 sm:pb-16 sm:pt-10">
       {/* subtle grid */}
       <div
         className="absolute inset-0 opacity-[0.06]"
