@@ -21,6 +21,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ChevronDown,
+  MessageCircle,
 } from "lucide-react";
 import giulianoAsset from "@/assets/giuliano.jpg.asset.json";
 import logo4sAsset from "@/assets/logo-4s.png.asset.json";
@@ -42,6 +43,8 @@ const EVENT_DATE_LABEL = "4 DE AGOSTO";
 const EVENT_TIME_LABEL = "14:00 ÀS 19:00";
 const EVENT_CITY_LABEL = "SANTOS - SP";
 const CTA_HREF = "#inscricao";
+const WHATSAPP_INDIVIDUAL_HREF = "https://wa.link/phm01w";
+const WHATSAPP_DUPLO_HREF = "https://wa.link/pyk6sz";
 
 /* -------- utilities -------- */
 
@@ -126,6 +129,20 @@ function CTAButton({
       className={`inline-flex items-center justify-center gap-2 rounded-xl bg-flame font-semibold text-white shadow-lg shadow-flame/30 transition-all hover:bg-flame/90 hover:-translate-y-0.5 active:translate-y-0 ${sz} ${className}`}
     >
       {children}
+    </a>
+  );
+}
+
+function WhatsAppButton({ href }: { href: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-all hover:border-teal/50 hover:bg-white/10"
+    >
+      <MessageCircle className="h-4 w-4" />
+      Fale conosco no WhatsApp
     </a>
   );
 }
@@ -915,6 +932,7 @@ function ClosingSection() {
                 <CTAButton size="lg" className="text-lg">
                   Garantir minha vaga
                 </CTAButton>
+                <WhatsAppButton href={WHATSAPP_INDIVIDUAL_HREF} />
                 <div className="text-center text-xs uppercase tracking-widest text-muted-foreground">
                   Pagamento seguro
                 </div>
@@ -939,6 +957,7 @@ function ClosingSection() {
                 <CTAButton size="lg" className="text-lg">
                   Garantir as 2 vagas
                 </CTAButton>
+                <WhatsAppButton href={WHATSAPP_DUPLO_HREF} />
                 <div className="text-center text-xs uppercase tracking-widest text-muted-foreground">
                   Pagamento seguro
                 </div>
