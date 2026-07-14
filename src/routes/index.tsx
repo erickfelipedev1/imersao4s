@@ -117,32 +117,30 @@ function CTAButton({
   children,
   className = "",
   size = "md",
+  href = CTA_HREF,
+  variant = "flame",
 }: {
   children: React.ReactNode;
   className?: string;
   size?: "md" | "lg";
+  href?: string;
+  variant?: "flame" | "whatsapp";
 }) {
   const sz = size === "lg" ? "px-8 py-4 text-base" : "px-6 py-3 text-sm";
-  return (
-    <a
-      href={CTA_HREF}
-      className={`inline-flex items-center justify-center gap-2 rounded-xl bg-flame font-semibold text-white shadow-lg shadow-flame/30 transition-all hover:bg-flame/90 hover:-translate-y-0.5 active:translate-y-0 ${sz} ${className}`}
-    >
-      {children}
-    </a>
-  );
-}
-
-function WhatsAppButton({ href }: { href: string }) {
+  const color =
+    variant === "whatsapp"
+      ? "bg-whatsapp shadow-lg shadow-whatsapp/30 hover:bg-whatsapp-hover"
+      : "bg-flame shadow-lg shadow-flame/30 hover:bg-flame/90";
+  const external = variant === "whatsapp";
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-all hover:border-teal/50 hover:bg-white/10"
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      className={`inline-flex items-center justify-center gap-2 rounded-xl font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0 ${color} ${sz} ${className}`}
     >
-      <MessageCircle className="h-4 w-4" />
-      Fale conosco no WhatsApp
+      {variant === "whatsapp" && <MessageCircle className="h-4 w-4" />}
+      {children}
     </a>
   );
 }
@@ -929,12 +927,11 @@ function ClosingSection() {
                 </p>
               </div>
               <div className="flex flex-col items-stretch gap-3">
-                <CTAButton size="lg" className="text-lg">
+                <CTAButton size="lg" className="text-lg" href={WHATSAPP_INDIVIDUAL_HREF} variant="whatsapp">
                   Garantir minha vaga
                 </CTAButton>
-                <WhatsAppButton href={WHATSAPP_INDIVIDUAL_HREF} />
                 <div className="text-center text-xs uppercase tracking-widest text-muted-foreground">
-                  Pagamento seguro
+                  Fale conosco pelo WhatsApp
                 </div>
               </div>
             </div>
@@ -954,12 +951,11 @@ function ClosingSection() {
                 </p>
               </div>
               <div className="flex flex-col items-stretch gap-3">
-                <CTAButton size="lg" className="text-lg">
+                <CTAButton size="lg" className="text-lg" href={WHATSAPP_DUPLO_HREF} variant="whatsapp">
                   Garantir as 2 vagas
                 </CTAButton>
-                <WhatsAppButton href={WHATSAPP_DUPLO_HREF} />
                 <div className="text-center text-xs uppercase tracking-widest text-muted-foreground">
-                  Pagamento seguro
+                  Fale conosco pelo WhatsApp
                 </div>
               </div>
             </div>
