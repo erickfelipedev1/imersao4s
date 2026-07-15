@@ -942,7 +942,7 @@ function ClosingSection() {
               </div>
               <div className="flex flex-col items-stretch gap-3">
                 <CTAButton size="lg" className="text-lg" href={CTA_HREF}>
-                  Garantir minha vaga
+                  Compre seu ingresso
                 </CTAButton>
                 <WhatsAppButton href={WHATSAPP_INDIVIDUAL_HREF} />
                 <div className="text-center text-xs uppercase tracking-widest text-muted-foreground">
@@ -967,7 +967,7 @@ function ClosingSection() {
               </div>
               <div className="flex flex-col items-stretch gap-3">
                 <CTAButton size="lg" className="text-lg" href={CTA_HREF}>
-                  Garantir as 2 vagas
+                  Compre seu ingresso
                 </CTAButton>
                 <WhatsAppButton href={WHATSAPP_DUPLO_HREF} />
                 <div className="text-center text-xs uppercase tracking-widest text-muted-foreground">
