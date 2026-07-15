@@ -852,7 +852,7 @@ function ClosingSection() {
   ];
 
   return (
-    <section id="inscricao" className="relative overflow-hidden border-t border-white/5 bg-navy-deep py-12 sm:py-16">
+    <section className="relative overflow-hidden border-t border-white/5 bg-navy-deep py-12 sm:py-16">
       <div
         className="absolute inset-0 opacity-40"
         style={{ background: "radial-gradient(circle at 50% 0%, oklch(0.28 0.08 275) 0%, transparent 60%)" }}
@@ -926,7 +926,7 @@ function ClosingSection() {
 
         {/* investment */}
         <Reveal>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
+          <div id="inscricao" className="mt-12 grid gap-6 sm:grid-cols-2 scroll-mt-24">
             <div className="grid gap-8 rounded-3xl border-2 border-flame/60 bg-gradient-to-br from-navy-elevated to-navy p-8 shadow-flame sm:p-10">
               <div>
                 <div className="text-sm uppercase tracking-widest text-teal">Ingresso individual</div>
