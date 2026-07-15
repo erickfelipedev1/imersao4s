@@ -152,7 +152,7 @@ function WhatsAppButton({ href }: { href: string }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center justify-center gap-2 rounded-xl bg-whatsapp px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-whatsapp/30 transition-all hover:bg-whatsapp-hover"
+      className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-all hover:border-teal/50 hover:bg-white/10"
     >
       <MessageCircle className="h-4 w-4" />
       Fale conosco no WhatsApp
