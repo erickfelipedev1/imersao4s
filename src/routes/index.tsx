@@ -42,7 +42,7 @@ export const Route = createFileRoute("/")({
 const EVENT_DATE_LABEL = "4 DE AGOSTO";
 const EVENT_TIME_LABEL = "14:00 ÀS 19:00";
 const EVENT_CITY_LABEL = "SANTOS - SP";
-const CTA_HREF = "#inscricao";
+const CTA_HREF = "https://www.sympla.com.br/evento/jornada-4s-international-experience/3498425";
 const WHATSAPP_INDIVIDUAL_HREF = "https://wa.link/phm01w";
 const WHATSAPP_DUPLO_HREF = "https://wa.link/pyk6sz";
 
@@ -131,7 +131,7 @@ function CTAButton({
     variant === "whatsapp"
       ? "bg-whatsapp shadow-lg shadow-whatsapp/30 hover:bg-whatsapp-hover"
       : "bg-flame shadow-lg shadow-flame/30 hover:bg-flame/90";
-  const external = variant === "whatsapp";
+  const external = href.startsWith("http");
   return (
     <a
       href={href}
@@ -141,6 +141,20 @@ function CTAButton({
     >
       {variant === "whatsapp" && <MessageCircle className="h-4 w-4" />}
       {children}
+    </a>
+  );
+}
+
+function WhatsAppButton({ href }: { href: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-all hover:border-teal/50 hover:bg-white/10"
+    >
+      <MessageCircle className="h-4 w-4" />
+      Fale conosco no WhatsApp
     </a>
   );
 }
@@ -226,7 +240,7 @@ function Hero() {
           <p className="mx-auto mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
             Um dia de imersão presencial em <span className="text-white">Santos/SP</span> para empresários que querem
             aumentar margem, reduzir custos e descobrir oportunidades importando da China, ensinado por quem opera há
-            mais de 20 anos no mercado.
+            mais de 30 anos no mercado.
           </p>
         </Reveal>
 
@@ -927,11 +941,12 @@ function ClosingSection() {
                 </p>
               </div>
               <div className="flex flex-col items-stretch gap-3">
-                <CTAButton size="lg" className="text-lg" href={WHATSAPP_INDIVIDUAL_HREF} variant="whatsapp">
+                <CTAButton size="lg" className="text-lg" href={CTA_HREF}>
                   Garantir minha vaga
                 </CTAButton>
+                <WhatsAppButton href={WHATSAPP_INDIVIDUAL_HREF} />
                 <div className="text-center text-xs uppercase tracking-widest text-muted-foreground">
-                  Fale conosco pelo WhatsApp
+                  Pagamento seguro
                 </div>
               </div>
             </div>
@@ -951,11 +966,12 @@ function ClosingSection() {
                 </p>
               </div>
               <div className="flex flex-col items-stretch gap-3">
-                <CTAButton size="lg" className="text-lg" href={WHATSAPP_DUPLO_HREF} variant="whatsapp">
+                <CTAButton size="lg" className="text-lg" href={CTA_HREF}>
                   Garantir as 2 vagas
                 </CTAButton>
+                <WhatsAppButton href={WHATSAPP_DUPLO_HREF} />
                 <div className="text-center text-xs uppercase tracking-widest text-muted-foreground">
-                  Fale conosco pelo WhatsApp
+                  Pagamento seguro
                 </div>
               </div>
             </div>
