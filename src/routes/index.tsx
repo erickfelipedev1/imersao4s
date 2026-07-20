@@ -42,6 +42,7 @@ export const Route = createFileRoute("/")({
 const EVENT_DATE_LABEL = "4 DE AGOSTO";
 const EVENT_TIME_LABEL = "14:00 ÀS 19:00";
 const EVENT_CITY_LABEL = "SANTOS - SP";
+const EVENT_DATETIME = new Date("2026-08-04T14:00:00-03:00");
 const CTA_HREF = "#inscricao";
 const TICKETS_HREF = "https://www.sympla.com.br/evento/jornada-4s-international-experience/3498425";
 const WHATSAPP_INDIVIDUAL_HREF = "https://wa.link/phm01w";
@@ -94,6 +95,46 @@ function Reveal({ children, className = "" }: { children: React.ReactNode; class
   return (
     <div ref={ref} className={`opacity-0 ${className}`}>
       {children}
+    </div>
+  );
+}
+
+function CountdownTimer({ target }: { target: Date }) {
+  const [timeLeft, setTimeLeft] = useState<number | null>(null);
+
+  useEffect(() => {
+    const tick = () => setTimeLeft(Math.max(target.getTime() - Date.now(), 0));
+    tick();
+    const interval = setInterval(tick, 1000);
+    return () => clearInterval(interval);
+  }, [target]);
+
+  const totalSeconds = timeLeft === null ? 0 : Math.floor(timeLeft / 1000);
+  const units = [
+    { label: "dias", value: Math.floor(totalSeconds / 86400) },
+    { label: "horas", value: Math.floor((totalSeconds % 86400) / 3600) },
+    { label: "min", value: Math.floor((totalSeconds % 3600) / 60) },
+    { label: "seg", value: totalSeconds % 60 },
+  ];
+
+  return (
+    <div className="flex flex-col items-center gap-2">
+      <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+        As inscrições fecham em
+      </span>
+      <div className="inline-flex items-center gap-2 rounded-xl border border-flame/40 bg-navy-elevated/60 px-4 py-3 sm:gap-3 sm:px-6">
+        {units.map((u, i) => (
+          <div key={u.label} className="flex items-center gap-2 sm:gap-3">
+            <div className="text-center">
+              <div className="font-display text-xl font-black tabular-nums text-white sm:text-2xl">
+                {timeLeft === null ? "--" : String(u.value).padStart(2, "0")}
+              </div>
+              <div className="text-[9px] uppercase tracking-widest text-muted-foreground">{u.label}</div>
+            </div>
+            {i < units.length - 1 && <span className="text-lg text-white/20 sm:text-xl">:</span>}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -243,6 +284,12 @@ function Hero() {
             aumentar margem, reduzir custos e descobrir oportunidades importando da China, ensinado por quem opera há
             mais de 30 anos no mercado.
           </p>
+        </Reveal>
+
+        <Reveal>
+          <div className="mt-8 flex justify-center">
+            <CountdownTimer target={EVENT_DATETIME} />
+          </div>
         </Reveal>
 
         <Reveal>
