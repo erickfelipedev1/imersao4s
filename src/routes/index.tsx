@@ -26,6 +26,7 @@ import {
 import giulianoAsset from "@/assets/giuliano.jpg.asset.json";
 import logo4sAsset from "@/assets/logo-4s.png.asset.json";
 import nextLevelAsset from "@/assets/Video_HeadLine.mp4.asset.json";
+import heroPosterAsset from "@/assets/hero-poster.jpg.asset.json";
 import depoimentoVitorVideo from "@/assets/depoimento-vitor.mp4.asset.json";
 import depoimentoVitorPoster from "@/assets/poster-vitor.jpg.asset.json";
 import depoimentoComunixVideo from "@/assets/depoimento-comunix.mp4.asset.json";
@@ -88,6 +89,29 @@ function useReveal<T extends HTMLElement>() {
     return () => io.disconnect();
   }, []);
   return ref;
+}
+
+function useLazyLoad<T extends HTMLElement>(rootMargin = "400px") {
+  const ref = useRef<T | null>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            setShouldLoad(true);
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { rootMargin },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return [ref, shouldLoad] as const;
 }
 
 function Reveal({ children, className = "" }: { children: React.ReactNode; className?: string }) {
@@ -332,6 +356,8 @@ function HeroVideo() {
     <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-navy-elevated shadow-elevated aspect-video">
       <video
         src={nextLevelAsset.url}
+        poster={heroPosterAsset.url}
+        preload="metadata"
         autoPlay
         muted
         loop
@@ -586,8 +612,9 @@ type VideoTestimonial = {
 };
 
 function VideoTestimonialCard({ item }: { item: VideoTestimonial }) {
+  const [containerRef, shouldLoad] = useLazyLoad<HTMLDivElement>();
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [playing, setPlaying] = useState(true);
+  const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
 
   const togglePlay = () => {
@@ -611,12 +638,16 @@ function VideoTestimonialCard({ item }: { item: VideoTestimonial }) {
   };
 
   return (
-    <div className="group relative aspect-[9/16] w-full overflow-hidden rounded-2xl border border-white/10 bg-navy-elevated shadow-elevated">
+    <div
+      ref={containerRef}
+      className="group relative aspect-[9/16] w-full overflow-hidden rounded-2xl border border-white/10 bg-navy-elevated shadow-elevated"
+    >
       <video
         ref={videoRef}
-        src={item.video}
+        src={shouldLoad ? item.video : undefined}
         poster={item.poster}
-        autoPlay
+        preload={shouldLoad ? "auto" : "none"}
+        autoPlay={shouldLoad}
         loop
         playsInline
         muted={muted}
