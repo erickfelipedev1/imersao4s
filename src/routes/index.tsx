@@ -45,7 +45,6 @@ const EVENT_TIME_LABEL = "14:00 ÀS 19:00";
 const EVENT_CITY_LABEL = "SANTOS - SP";
 const EVENT_DATETIME = new Date("2026-08-04T14:00:00-03:00");
 const CTA_HREF = "#inscricao";
-const TICKETS_HREF = "https://www.sympla.com.br/evento/jornada-4s-international-experience/3498425";
 const WHATSAPP_INDIVIDUAL_HREF = "https://wa.link/phm01w";
 const WHATSAPP_DUPLO_HREF = "https://wa.link/pyk6sz";
 
@@ -1020,12 +1019,12 @@ function ClosingSection() {
                 </p>
               </div>
               <div className="flex flex-col items-stretch gap-3">
-                <CTAButton size="lg" className="text-lg" href={TICKETS_HREF}>
-                  Compre seu ingresso
+                <CTAButton size="lg" className="text-lg" href={WHATSAPP_INDIVIDUAL_HREF}>
+                  Garantir minha vaga
                 </CTAButton>
                 <WhatsAppButton href={WHATSAPP_INDIVIDUAL_HREF} />
                 <div className="text-center text-xs uppercase tracking-widest text-muted-foreground">
-                  Pagamento seguro
+                  Atendimento rápido pelo WhatsApp
                 </div>
               </div>
             </div>
@@ -1045,12 +1044,12 @@ function ClosingSection() {
                 </p>
               </div>
               <div className="flex flex-col items-stretch gap-3">
-                <CTAButton size="lg" className="text-lg" href={TICKETS_HREF}>
-                  Compre seu ingresso
+                <CTAButton size="lg" className="text-lg" href={WHATSAPP_DUPLO_HREF}>
+                  Garantir as 2 vagas
                 </CTAButton>
                 <WhatsAppButton href={WHATSAPP_DUPLO_HREF} />
                 <div className="text-center text-xs uppercase tracking-widest text-muted-foreground">
-                  Pagamento seguro
+                  Atendimento rápido pelo WhatsApp
                 </div>
               </div>
             </div>
