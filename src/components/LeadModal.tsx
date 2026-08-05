@@ -2,8 +2,12 @@
 
 import { useState } from "react";
 
-export function LeadModal() {
-  const [isOpen, setIsOpen] = useState(true);
+interface LeadModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export function LeadModal({ isOpen, onClose }: LeadModalProps) {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -66,7 +70,7 @@ export function LeadModal() {
       // Redireciona para WhatsApp após 2 segundos
       setTimeout(() => {
         window.open(whatsappUrl, "_blank");
-        setIsOpen(false);
+        onClose();
       }, 2000);
     } catch (error) {
       console.error("Erro ao processar:", error);

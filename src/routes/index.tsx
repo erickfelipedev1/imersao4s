@@ -260,7 +260,7 @@ function EventHighlight() {
   );
 }
 
-function Hero() {
+function Hero({ onOpenModal }: { onOpenModal: () => void }) {
   const tags = ["Networking", "Margem real", "Experiência", "Mercado internacional", "Cortar atravessadores"];
   return (
     <section className="relative overflow-hidden bg-hero pb-12 pt-8 sm:pb-16 sm:pt-10">
@@ -316,7 +316,7 @@ function Hero() {
 
         <Reveal>
           <div className="mt-6 flex flex-col items-center gap-4">
-            <CTAButton size="lg" className="animate-pulse-glow">
+            <CTAButton size="lg" className="animate-pulse-glow" onClick={onOpenModal}>
               Garantir minha vaga
             </CTAButton>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -366,7 +366,7 @@ function HeroVideo() {
   );
 }
 
-function ContextSection() {
+function ContextSection({ onOpenModal }: { onOpenModal: () => void }) {
   const items = [
     { icon: Ship, text: "Como empresários brasileiros compram direto das fábricas chinesas" },
     { icon: BarChart3, text: "Como avaliar se importar faz sentido para sua empresa" },
@@ -420,7 +420,7 @@ function ContextSection() {
                 ))}
               </ul>
               <div className="mt-10 flex justify-center">
-                <CTAButton>Garantir minha vaga</CTAButton>
+                <CTAButton onClick={onOpenModal}>Garantir minha vaga</CTAButton>
               </div>
             </div>
           </div>
@@ -1072,14 +1072,16 @@ function Footer() {
 }
 
 function LandingPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-navy-deep text-white">
-      <LeadModal />
+      <LeadModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <Header />
       <main>
-        <Hero />
+        <Hero onOpenModal={() => setIsModalOpen(true)} />
         <AuthoritySection />
-        <ContextSection />
+        <ContextSection onOpenModal={() => setIsModalOpen(true)} />
         <PainSection />
         <ForWhomSection />
         <TestimonialsSection />
