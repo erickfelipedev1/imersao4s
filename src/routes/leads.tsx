@@ -1,10 +1,11 @@
 "use client";
 
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { collection, query, orderBy, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import { Download, Trash2 } from "lucide-react";
+import { Download, LogOut } from "lucide-react";
+import { onAuthStateChangedListener, logoutUser } from "@/lib/auth";
 
 interface Lead {
   id: string;
@@ -15,11 +16,24 @@ interface Lead {
 }
 
 function LeadsPage() {
+  const navigate = useNavigate();
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
 
   useEffect(() => {
-    loadLeads();
+    const unsubscribe = onAuthStateChangedListener((user) => {
+      if (!user) {
+        navigate({ to: "/login" });
+      } else {
+        setIsAuthenticated(true);
+        setUserEmail(user.email || "");
+        loadLeads();
+      }
+    });
+
+    return () => unsubscribe();
   }, []);
 
   const loadLeads = async () => {
@@ -66,7 +80,16 @@ function LeadsPage() {
     window.URL.revokeObjectURL(url);
   };
 
-  if (loading) {
+  const handleLogout = async () => {
+    try {
+      await logoutUser();
+      navigate({ to: "/login" });
+    } catch (error) {
+      console.error("Erro ao fazer logout:", error);
+    }
+  };
+
+  if (!isAuthenticated || loading) {
     return (
       <div className="min-h-screen bg-navy-deep text-white flex items-center justify-center">
         <div className="text-center">
@@ -83,17 +106,27 @@ function LeadsPage() {
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-4xl font-bold">Leads</h1>
-            <p className="mt-2 text-muted-foreground">
+            <p className="mt-2 text-sm text-muted-foreground">
               Total: {leads.length} {leads.length === 1 ? "lead" : "leads"}
+              {userEmail && <span className="ml-2">• Logado como: {userEmail}</span>}
             </p>
           </div>
-          <button
-            onClick={exportCSV}
-            className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-teal to-teal/80 hover:from-teal/90 hover:to-teal/70 px-6 py-3 font-semibold text-white transition"
-          >
-            <Download className="h-4 w-4" />
-            Exportar CSV
-          </button>
+          <div className="flex gap-3">
+            <button
+              onClick={exportCSV}
+              className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-teal to-teal/80 hover:from-teal/90 hover:to-teal/70 px-6 py-3 font-semibold text-white transition"
+            >
+              <Download className="h-4 w-4" />
+              Exportar CSV
+            </button>
+            <button
+              onClick={handleLogout}
+              className="inline-flex items-center gap-2 rounded-lg border border-white/20 hover:border-white/40 px-6 py-3 font-semibold text-white transition"
+            >
+              <LogOut className="h-4 w-4" />
+              Sair
+            </button>
+          </div>
         </div>
 
         {leads.length === 0 ? (
