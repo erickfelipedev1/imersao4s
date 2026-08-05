@@ -26,7 +26,6 @@ import {
 import giulianoAsset from "@/assets/giuliano.jpg.asset.json";
 import logo4sAsset from "@/assets/logo-4s.png.asset.json";
 import nextLevelAsset from "@/assets/Video_HeadLine.mp4.asset.json";
-import heroPosterAsset from "@/assets/hero-poster.jpg.asset.json";
 import depoimentoVitorVideo from "@/assets/depoimento-vitor.mp4.asset.json";
 import depoimentoVitorPoster from "@/assets/poster-vitor.jpg.asset.json";
 import depoimentoComunixVideo from "@/assets/depoimento-comunix.mp4.asset.json";
@@ -40,10 +39,10 @@ export const Route = createFileRoute("/")({
   component: LandingPage,
 });
 
-const EVENT_DATE_LABEL = "4 DE AGOSTO";
+const EVENT_DATE_LABEL = "1º DE SETEMBRO";
 const EVENT_TIME_LABEL = "14:00 ÀS 19:00";
 const EVENT_CITY_LABEL = "SANTOS - SP";
-const EVENT_DATETIME = new Date("2026-08-04T14:00:00-03:00");
+const EVENT_DATETIME = new Date("2026-09-01T14:00:00-03:00");
 const CTA_HREF = "#inscricao";
 const WHATSAPP_INDIVIDUAL_HREF = "https://wa.link/phm01w";
 const WHATSAPP_DUPLO_HREF = "https://wa.link/pyk6sz";
@@ -355,7 +354,6 @@ function HeroVideo() {
     <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 bg-navy-elevated shadow-elevated aspect-video">
       <video
         src={nextLevelAsset.url}
-        poster={heroPosterAsset.url}
         preload="metadata"
         autoPlay
         muted
