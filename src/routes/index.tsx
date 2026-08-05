@@ -288,8 +288,8 @@ function Hero() {
 
         <Reveal>
           <h1 className="mx-auto mt-4 font-display text-3xl font-black leading-[1.05] text-white sm:text-4xl lg:text-5xl">
-            A Imersão <br className="hidden sm:block" />
-            Definitiva para <span className="text-gradient-flame">Aprender</span>
+            A Imersão Definitiva para <br className="hidden sm:block" />
+            <span className="text-gradient-flame">Aprender a Importar da China</span>
           </h1>
         </Reveal>
 
