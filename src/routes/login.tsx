@@ -95,15 +95,6 @@ function LoginPage() {
           </button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-muted-foreground">
-          Primeira vez?{" "}
-          <button
-            onClick={() => navigate({ to: "/register" })}
-            className="text-teal hover:text-teal/80 font-medium transition"
-          >
-            Criar conta
-          </button>
-        </p>
       </div>
     </div>
   );
