@@ -184,19 +184,34 @@ function CTAButton({
   size = "md",
   href = CTA_HREF,
   variant = "flame",
+  onClick,
 }: {
   children: React.ReactNode;
   className?: string;
   size?: "md" | "lg";
   href?: string;
   variant?: "flame" | "whatsapp";
+  onClick?: () => void;
 }) {
   const sz = size === "lg" ? "px-8 py-4 text-base" : "px-6 py-3 text-sm";
   const color =
     variant === "whatsapp"
       ? "bg-whatsapp shadow-lg shadow-whatsapp/30 hover:bg-whatsapp-hover"
       : "bg-flame shadow-lg shadow-flame/30 hover:bg-flame/90";
-  const external = href.startsWith("http");
+  const external = href?.startsWith("http");
+
+  if (onClick) {
+    return (
+      <button
+        onClick={onClick}
+        className={`inline-flex items-center justify-center gap-2 rounded-xl font-semibold text-white transition-all hover:-translate-y-0.5 active:translate-y-0 ${color} ${sz} ${className}`}
+      >
+        {variant === "whatsapp" && <MessageCircle className="h-4 w-4" />}
+        {children}
+      </button>
+    );
+  }
+
   return (
     <a
       href={href}
