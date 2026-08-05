@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import { LeadModal } from "@/components/LeadModal";
 import {
   Ship,
   Package,
@@ -1073,6 +1074,7 @@ function Footer() {
 function LandingPage() {
   return (
     <div className="min-h-screen bg-navy-deep text-white">
+      <LeadModal />
       <Header />
       <main>
         <Hero />
