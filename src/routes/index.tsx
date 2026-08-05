@@ -288,9 +288,8 @@ function Hero() {
 
         <Reveal>
           <h1 className="mx-auto mt-4 font-display text-3xl font-black leading-[1.05] text-white sm:text-4xl lg:text-5xl">
-            Domine o mercado <br className="hidden sm:block" />
-            mais <span className="text-gradient-flame">lucrativo do mundo</span>
-            <br className="hidden sm:block" /> em apenas 1 dia.
+            A Imersão <br className="hidden sm:block" />
+            Definitiva para <span className="text-gradient-flame">Aprender</span>
           </h1>
         </Reveal>
 
