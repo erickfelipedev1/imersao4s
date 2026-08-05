@@ -1,8 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { collection, addDoc } from "firebase/firestore";
-import { db } from "@/lib/firebase";
+import { useState } from "react";
 
 export function LeadModal() {
   const [isOpen, setIsOpen] = useState(true);
@@ -52,17 +50,26 @@ export function LeadModal() {
     setLoading(true);
 
     try {
-      await addDoc(collection(db, "leads"), {
-        ...formData,
-        createdAt: new Date(),
-      });
+      // Formata a mensagem para WhatsApp
+      const message = `Olá! Quero garantir meu ingresso individual para Imersão Jornada 4S e tirar dúvidas sobre o evento.
+👤 Nome: ${formData.nome}
+📧 Email: ${formData.email}
+📱 Tel: ${formData.telefone}`;
 
+      // Codifica a mensagem para URL
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/5513996287673?text=${encodedMessage}`;
+
+      // Mostra mensagem de sucesso
       setSubmitted(true);
+
+      // Redireciona para WhatsApp após 2 segundos
       setTimeout(() => {
+        window.open(whatsappUrl, "_blank");
         setIsOpen(false);
       }, 2000);
     } catch (error) {
-      console.error("Erro ao salvar lead:", error);
+      console.error("Erro ao processar:", error);
       alert("Erro ao enviar. Tente novamente.");
     } finally {
       setLoading(false);
