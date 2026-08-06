@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { sendLeadToClint } from "@/lib/clint.server";
 
 interface LeadModalProps {
   isOpen: boolean;
@@ -54,35 +55,17 @@ export function LeadModal({ isOpen, onClose }: LeadModalProps) {
     setLoading(true);
 
     try {
-      // Envia dados para o Clint via webhook (com tratamento de erro silencioso)
+      // Envia dados para o Clint via server function (evita CORS do fetch direto no navegador)
       try {
-        await fetch(
-          "https://functions-api.clint.digital/endpoints/integration/webhook/ec69c535-69bd-4e86-b8d0-bc100158838d",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              nome: formData.nome,
-              email: formData.email,
-              telefone: formData.telefone,
-              timestamp: new Date().toISOString(),
-              origem: "Jornada 4S - Landing Page",
-            }),
-          }
-        );
+        await sendLeadToClint({ data: formData });
       } catch (webhookError) {
-        // Log do erro mas continua (não falha se webhook falhar)
+        // Log do erro mas continua (não falha o fluxo se o Clint falhar)
         console.error("Webhook falhou:", webhookError);
-        alert(`⚠️ Erro ao salvar no Clint: ${webhookError}`);
       }
 
       // Formata a mensagem para WhatsApp
       const message = `Olá! Quero garantir meu ingresso individual para Imersão Jornada 4S e tirar dúvidas sobre o evento.
-👤 Nome: ${formData.nome}
-📧 Email: ${formData.email}
-📱 Tel: ${formData.telefone}`;
+👤 Nome: ${formData.nome}`;
 
       // Codifica a mensagem para URL
       const encodedMessage = encodeURIComponent(message);
