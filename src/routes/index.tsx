@@ -45,8 +45,6 @@ const EVENT_TIME_LABEL = "14:00 ÀS 19:00";
 const EVENT_CITY_LABEL = "SANTOS - SP";
 const EVENT_DATETIME = new Date("2026-09-01T14:00:00-03:00");
 const CTA_HREF = "#inscricao";
-const WHATSAPP_INDIVIDUAL_HREF = "https://wa.link/phm01w";
-const WHATSAPP_DUPLO_HREF = "https://wa.link/pyk6sz";
 
 /* -------- utilities -------- */
 
@@ -225,14 +223,21 @@ function CTAButton({
   );
 }
 
-function WhatsAppButton({ href }: { href: string }) {
+function WhatsAppButton({ href, onClick }: { href?: string; onClick?: () => void }) {
+  const className =
+    "inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-all hover:border-teal/50 hover:bg-white/10";
+
+  if (onClick) {
+    return (
+      <button onClick={onClick} className={className}>
+        <MessageCircle className="h-4 w-4" />
+        Fale conosco no WhatsApp
+      </button>
+    );
+  }
+
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-all hover:border-teal/50 hover:bg-white/10"
-    >
+    <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
       <MessageCircle className="h-4 w-4" />
       Fale conosco no WhatsApp
     </a>
@@ -931,7 +936,11 @@ function FAQSection() {
   );
 }
 
-function ClosingSection() {
+function ClosingSection({
+  onOpenModal,
+}: {
+  onOpenModal: (ticketType: "individual" | "duplo") => void;
+}) {
   const included = [
     { icon: Calendar, text: "1 dia de imersão presencial na Connect, Boqueirão/Santos" },
     { icon: BarChart3, text: "O método completo dos 4 estágios da importação" },
@@ -1032,10 +1041,10 @@ function ClosingSection() {
                 </p>
               </div>
               <div className="flex flex-col items-stretch gap-3">
-                <CTAButton size="lg" className="text-lg" href={WHATSAPP_INDIVIDUAL_HREF}>
+                <CTAButton size="lg" className="text-lg" onClick={() => onOpenModal("individual")}>
                   Garantir minha vaga
                 </CTAButton>
-                <WhatsAppButton href={WHATSAPP_INDIVIDUAL_HREF} />
+                <WhatsAppButton onClick={() => onOpenModal("individual")} />
                 <div className="text-center text-xs uppercase tracking-widest text-muted-foreground">
                   Atendimento rápido pelo WhatsApp
                 </div>
@@ -1057,10 +1066,10 @@ function ClosingSection() {
                 </p>
               </div>
               <div className="flex flex-col items-stretch gap-3">
-                <CTAButton size="lg" className="text-lg" href={WHATSAPP_DUPLO_HREF}>
+                <CTAButton size="lg" className="text-lg" onClick={() => onOpenModal("duplo")}>
                   Garantir as 2 vagas
                 </CTAButton>
-                <WhatsAppButton href={WHATSAPP_DUPLO_HREF} />
+                <WhatsAppButton onClick={() => onOpenModal("duplo")} />
                 <div className="text-center text-xs uppercase tracking-widest text-muted-foreground">
                   Atendimento rápido pelo WhatsApp
                 </div>
@@ -1088,20 +1097,26 @@ function Footer() {
 
 function LandingPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [ticketType, setTicketType] = useState<"individual" | "duplo">("individual");
+
+  const openModal = (type: "individual" | "duplo" = "individual") => {
+    setTicketType(type);
+    setIsModalOpen(true);
+  };
 
   return (
     <div className="min-h-screen bg-navy-deep text-white">
-      <LeadModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <LeadModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} ticketType={ticketType} />
       <Header />
       <main>
-        <Hero onOpenModal={() => setIsModalOpen(true)} />
+        <Hero onOpenModal={() => openModal("individual")} />
         <AuthoritySection />
-        <ContextSection onOpenModal={() => setIsModalOpen(true)} />
+        <ContextSection onOpenModal={() => openModal("individual")} />
         <PainSection />
         <ForWhomSection />
         <TestimonialsSection />
         <InfoHighlightsSection />
-        <ClosingSection />
+        <ClosingSection onOpenModal={openModal} />
         <FAQSection />
       </main>
       <Footer />

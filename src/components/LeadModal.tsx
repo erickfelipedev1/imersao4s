@@ -6,9 +6,10 @@ import { sendLeadToClint } from "@/lib/clint.server";
 interface LeadModalProps {
   isOpen: boolean;
   onClose: () => void;
+  ticketType?: "individual" | "duplo";
 }
 
-export function LeadModal({ isOpen, onClose }: LeadModalProps) {
+export function LeadModal({ isOpen, onClose, ticketType = "individual" }: LeadModalProps) {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -64,8 +65,7 @@ export function LeadModal({ isOpen, onClose }: LeadModalProps) {
       }
 
       // Formata a mensagem para WhatsApp
-      const message = `Olá! Quero garantir meu ingresso individual para Imersão Jornada 4S e tirar dúvidas sobre o evento.
-👤 Nome: ${formData.nome}`;
+      const message = `Olá! Me chamo ${formData.nome}. Quero garantir meu ingresso ${ticketType} para Imersão Jornada 4S e tirar dúvidas sobre o evento.`;
 
       // Codifica a mensagem para URL
       const encodedMessage = encodeURIComponent(message);
