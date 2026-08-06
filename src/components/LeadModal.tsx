@@ -74,7 +74,8 @@ export function LeadModal({ isOpen, onClose }: LeadModalProps) {
         );
       } catch (webhookError) {
         // Log do erro mas continua (não falha se webhook falhar)
-        console.warn("Webhook falhou, continuando com WhatsApp:", webhookError);
+        console.error("Webhook falhou:", webhookError);
+        alert(`⚠️ Erro ao salvar no Clint: ${webhookError}`);
       }
 
       // Formata a mensagem para WhatsApp
