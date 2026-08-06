@@ -54,6 +54,24 @@ export function LeadModal({ isOpen, onClose }: LeadModalProps) {
     setLoading(true);
 
     try {
+      // Envia dados para o Clint via webhook
+      await fetch(
+        "https://functions-api.clint.digital/endpoints/integration/webhook/ec69c535-69bd-4e86-b8d0-bc100158838d",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            nome: formData.nome,
+            email: formData.email,
+            telefone: formData.telefone,
+            timestamp: new Date().toISOString(),
+            origem: "Jornada 4S - Landing Page",
+          }),
+        }
+      );
+
       // Formata a mensagem para WhatsApp
       const message = `Olá! Quero garantir meu ingresso individual para Imersão Jornada 4S e tirar dúvidas sobre o evento.
 👤 Nome: ${formData.nome}
