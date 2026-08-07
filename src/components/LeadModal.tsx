@@ -41,7 +41,7 @@ export function LeadModal({ isOpen, onClose, ticketType = "individual" }: LeadMo
     }));
   };
 
-  const isFormValid = () => true;
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
