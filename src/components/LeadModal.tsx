@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { sendLeadToClint } from "@/lib/clint.server";
+import logoIE from "@/assets/international-experience.png.asset.json";
 
 interface LeadModalProps {
   isOpen: boolean;
@@ -43,13 +44,7 @@ export function LeadModal({ isOpen, onClose, ticketType = "individual" }: LeadMo
     }));
   };
 
-  const isFormValid = () => {
-    return (
-      formData.nome.trim().length >= 3 &&
-      validateEmail(formData.email) &&
-      formData.telefone.replace(/\D/g, "").length >= 10
-    );
-  };
+  const isFormValid = () => true;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
