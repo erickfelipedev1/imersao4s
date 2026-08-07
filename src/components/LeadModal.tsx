@@ -86,90 +86,81 @@ export function LeadModal({ isOpen, onClose, ticketType = "individual" }: LeadMo
     <div className={`fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm transition-all ${
       isOpen ? "bg-black/50 opacity-100" : "bg-black/0 opacity-0 pointer-events-none"
     }`}>
-      <div className="w-full max-w-md rounded-2xl bg-navy-elevated p-8 shadow-2xl border border-white/10">
+      <div className="relative w-full max-w-md rounded-2xl bg-navy-elevated p-8 shadow-2xl border border-white/10">
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Fechar"
+          className="absolute right-4 top-4 rounded-full p-1.5 text-white/60 transition hover:bg-white/10 hover:text-white"
+        >
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
         {!submitted ? (
           <>
+            <img
+              src={logoIE.url}
+              alt="Imersão International Experience"
+              className="mb-5 h-12 w-auto"
+            />
             <h2 className="mb-2 text-2xl font-bold text-white">
-              Garanta sua vaga
+              Imersão INTERNATIONAL EXPERIENCE
             </h2>
             <p className="mb-6 text-sm text-muted-foreground">
-              Preencha seus dados para receber mais informações sobre a Jornada 4S
+              Informe seus dados para prosseguir
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-white mb-2">
-                  Nome *
+                  Nome
                 </label>
                 <input
                   type="text"
                   name="nome"
                   value={formData.nome}
                   onChange={handleChange}
-                  required
-                  className={`w-full rounded-lg border px-4 py-2.5 text-white placeholder-white/40 transition focus:outline-none ${
-                    formData.nome && formData.nome.trim().length < 3
-                      ? "border-red-500/50 bg-red-500/10 focus:border-red-500 focus:bg-red-500/15"
-                      : "border-white/10 bg-white/5 focus:border-teal focus:bg-white/10"
-                  }`}
+                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder-white/40 transition focus:border-teal focus:bg-white/10 focus:outline-none"
                   placeholder="Seu nome completo"
                 />
-                {formData.nome && formData.nome.trim().length < 3 && (
-                  <p className="text-xs text-red-400 mt-1">Mínimo 3 caracteres</p>
-                )}
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-white mb-2">
-                  Email *
+                  Email
                 </label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
-                  className={`w-full rounded-lg border px-4 py-2.5 text-white placeholder-white/40 transition focus:outline-none ${
-                    formData.email && !validateEmail(formData.email)
-                      ? "border-red-500/50 bg-red-500/10 focus:border-red-500 focus:bg-red-500/15"
-                      : "border-white/10 bg-white/5 focus:border-teal focus:bg-white/10"
-                  }`}
+                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder-white/40 transition focus:border-teal focus:bg-white/10 focus:outline-none"
                   placeholder="seu@email.com"
                 />
-                {formData.email && !validateEmail(formData.email) && (
-                  <p className="text-xs text-red-400 mt-1">Email inválido</p>
-                )}
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-white mb-2">
-                  Telefone *
+                  Telefone
                 </label>
                 <input
                   type="tel"
                   name="telefone"
                   value={formData.telefone}
                   onChange={handleChange}
-                  required
-                  className={`w-full rounded-lg border px-4 py-2.5 text-white placeholder-white/40 transition focus:outline-none ${
-                    formData.telefone && formData.telefone.replace(/\D/g, "").length < 10
-                      ? "border-red-500/50 bg-red-500/10 focus:border-red-500 focus:bg-red-500/15"
-                      : "border-white/10 bg-white/5 focus:border-teal focus:bg-white/10"
-                  }`}
+                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2.5 text-white placeholder-white/40 transition focus:border-teal focus:bg-white/10 focus:outline-none"
                   placeholder="(11) 99999-9999"
                   inputMode="tel"
                 />
-                {formData.telefone && formData.telefone.replace(/\D/g, "").length < 10 && (
-                  <p className="text-xs text-red-400 mt-1">Telefone incompleto (mínimo 10 dígitos)</p>
-                )}
               </div>
 
               <button
                 type="submit"
-                disabled={loading || !isFormValid()}
+                disabled={loading}
                 className="w-full bg-gradient-to-r from-flame to-orange-600 hover:from-flame/90 hover:to-orange-600/90 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg py-3 font-semibold text-white transition mt-6"
               >
-                {loading ? "Enviando..." : "Garantir vaga"}
+                {loading ? "Enviando..." : "Continuar"}
               </button>
             </form>
           </>
