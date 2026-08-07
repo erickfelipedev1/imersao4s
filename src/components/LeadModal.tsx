@@ -99,7 +99,7 @@ export function LeadModal({ isOpen, onClose, ticketType = "individual" }: LeadMo
             <img
               src={logoIE.url}
               alt="Imersão International Experience"
-              className="mb-5 h-12 w-auto"
+              className="mx-auto mb-6 w-full max-w-[19rem] object-contain"
             />
             <h2 className="mb-2 text-2xl font-bold text-white">
               Imersão INTERNATIONAL EXPERIENCE
