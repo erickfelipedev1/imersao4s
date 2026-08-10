@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { sendLeadToClint } from "@/lib/clint.server";
+import { backupLeadToSheets } from "@/lib/sheets-backup";
 import { db } from "@/lib/firebase";
 import logoIE from "@/assets/international-experience.png.asset.json";
 
@@ -46,35 +47,28 @@ export function LeadModal({ isOpen, onClose }: LeadModalProps) {
     e.preventDefault();
     setLoading(true);
 
-    try {
-      // Envia dados para o Clint via server function (evita CORS do fetch direto no navegador)
-      try {
-        await sendLeadToClint({ data: formData });
-      } catch (webhookError) {
-        // Log do erro mas continua (não falha o fluxo se o Clint falhar)
-        console.error("Webhook falhou:", webhookError);
-      }
+    // Envia para Clint, Firestore e Google Sheets em paralelo; cada um falha silenciosamente
+    // sem travar o fluxo — o redirecionamento pro Sympla acontece de qualquer forma.
+    const results = await Promise.allSettled([
+      sendLeadToClint({ data: formData }),
+      addDoc(collection(db, "leads"), {
+        nome: formData.nome,
+        email: formData.email,
+        telefone: formData.telefone,
+        createdAt: serverTimestamp(),
+      }),
+      backupLeadToSheets(formData),
+    ]);
 
-      // Backup no Firestore, independente do Clint
-      try {
-        await addDoc(collection(db, "leads"), {
-          nome: formData.nome,
-          email: formData.email,
-          telefone: formData.telefone,
-          createdAt: serverTimestamp(),
-        });
-      } catch (firestoreError) {
-        console.error("Backup no Firestore falhou:", firestoreError);
+    results.forEach((result) => {
+      if (result.status === "rejected") {
+        console.error("Backup de lead falhou:", result.reason);
       }
+    });
 
-      window.open(SYMPLA_URL, "_blank");
-      onClose();
-    } catch (error) {
-      console.error("Erro ao processar:", error);
-      alert("Erro ao enviar. Tente novamente.");
-    } finally {
-      setLoading(false);
-    }
+    setLoading(false);
+    window.open(SYMPLA_URL, "_blank");
+    onClose();
   };
 
   return (
