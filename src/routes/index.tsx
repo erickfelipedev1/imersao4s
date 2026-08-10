@@ -45,6 +45,8 @@ const EVENT_TIME_LABEL = "14:00 ÀS 19:00";
 const EVENT_CITY_LABEL = "SANTOS - SP";
 const EVENT_DATETIME = new Date("2026-09-01T14:00:00-03:00");
 const CTA_HREF = "#inscricao";
+const WHATSAPP_INDIVIDUAL_HREF = "https://wa.link/phm01w";
+const WHATSAPP_DUPLO_HREF = "https://wa.link/pyk6sz";
 
 /* -------- utilities -------- */
 
@@ -150,7 +152,9 @@ function CountdownTimer({ target }: { target: Date }) {
               <div className="font-display text-xl font-black tabular-nums text-white sm:text-2xl">
                 {timeLeft === null ? "--" : String(u.value).padStart(2, "0")}
               </div>
-              <div className="text-[9px] uppercase tracking-widest text-muted-foreground">{u.label}</div>
+              <div className="text-[9px] uppercase tracking-widest text-muted-foreground">
+                {u.label}
+              </div>
             </div>
             {i < units.length - 1 && <span className="text-lg text-white/20 sm:text-xl">:</span>}
           </div>
@@ -169,7 +173,9 @@ function LogoMark({ className = "" }: { className?: string }) {
         <img src={logo4sAsset.url} alt="Logo Jornada 4S" className="h-full w-full object-cover" />
       </div>
       <div className="leading-tight">
-        <div className="font-display font-extrabold text-white text-sm tracking-wide">JORNADA 4S</div>
+        <div className="font-display font-extrabold text-white text-sm tracking-wide">
+          JORNADA 4S
+        </div>
         <div className="text-[10px] uppercase tracking-[0.2em] text-teal">Grupo Now</div>
       </div>
     </div>
@@ -223,21 +229,14 @@ function CTAButton({
   );
 }
 
-function WhatsAppButton({ href, onClick }: { href?: string; onClick?: () => void }) {
-  const className =
-    "inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-all hover:border-teal/50 hover:bg-white/10";
-
-  if (onClick) {
-    return (
-      <button onClick={onClick} className={className}>
-        <MessageCircle className="h-4 w-4" />
-        Fale conosco no WhatsApp
-      </button>
-    );
-  }
-
+function WhatsAppButton({ href }: { href: string }) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-all hover:border-teal/50 hover:bg-white/10"
+    >
       <MessageCircle className="h-4 w-4" />
       Fale conosco no WhatsApp
     </a>
@@ -280,8 +279,14 @@ function EventHighlight() {
   );
 }
 
-function Hero({ onOpenModal }: { onOpenModal: () => void }) {
-  const tags = ["Networking", "Margem real", "Experiência", "Mercado internacional", "Cortar atravessadores"];
+function Hero() {
+  const tags = [
+    "Networking",
+    "Margem real",
+    "Experiência",
+    "Mercado internacional",
+    "Cortar atravessadores",
+  ];
   return (
     <section className="relative overflow-hidden bg-hero pb-12 pt-8 sm:pb-16 sm:pt-10">
       {/* subtle grid */}
@@ -322,9 +327,9 @@ function Hero({ onOpenModal }: { onOpenModal: () => void }) {
 
         <Reveal>
           <p className="mx-auto mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            Um dia de imersão presencial em <span className="text-white">Santos/SP</span> para empresários que querem
-            aumentar margem, reduzir custos e descobrir oportunidades importando da China, ensinado por quem opera há
-            mais de 30 anos no mercado.
+            Um dia de imersão presencial em <span className="text-white">Santos/SP</span> para
+            empresários que querem aumentar margem, reduzir custos e descobrir oportunidades
+            importando da China, ensinado por quem opera há mais de 30 anos no mercado.
           </p>
         </Reveal>
 
@@ -336,12 +341,13 @@ function Hero({ onOpenModal }: { onOpenModal: () => void }) {
 
         <Reveal>
           <div className="mt-6 flex flex-col items-center gap-4">
-            <CTAButton size="lg" className="animate-pulse-glow" onClick={onOpenModal}>
+            <CTAButton size="lg" className="animate-pulse-glow">
               Garantir minha vaga
             </CTAButton>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <ShieldCheck className="h-4 w-4 text-teal" />
-              Vagas limitadas, apenas <span className="font-semibold text-white">30 empresários</span> nesta edição
+              Vagas limitadas, apenas{" "}
+              <span className="font-semibold text-white">30 empresários</span> nesta edição
             </div>
           </div>
         </Reveal>
@@ -386,12 +392,15 @@ function HeroVideo() {
   );
 }
 
-function ContextSection({ onOpenModal }: { onOpenModal: () => void }) {
+function ContextSection() {
   const items = [
     { icon: Ship, text: "Como empresários brasileiros compram direto das fábricas chinesas" },
     { icon: BarChart3, text: "Como avaliar se importar faz sentido para sua empresa" },
     { icon: TrendingUp, text: "Como reduzir riscos e aumentar margens" },
-    { icon: Package, text: "Como funciona a Canton Fair e por que é a maior feira multissetorial do mundo" },
+    {
+      icon: Package,
+      text: "Como funciona a Canton Fair e por que é a maior feira multissetorial do mundo",
+    },
     { icon: Plane, text: "Como transformar uma viagem em estratégia de crescimento" },
   ];
   return (
@@ -405,9 +414,10 @@ function ContextSection({ onOpenModal }: { onOpenModal: () => void }) {
         </Reveal>
         <Reveal>
           <p className="mt-6 max-w-3xl text-lg text-muted-foreground">
-            Por anos, comprar de distribuidores nacionais foi o caminho simples. Hoje, empresas competitivas buscam a
-            origem dos produtos para recuperar margem e reduzir a dependência nacional. A China deixou de ser só baixo
-            custo, virou centro global de inovação e oportunidade.
+            Por anos, comprar de distribuidores nacionais foi o caminho simples. Hoje, empresas
+            competitivas buscam a origem dos produtos para recuperar margem e reduzir a dependência
+            nacional. A China deixou de ser só baixo custo, virou centro global de inovação e
+            oportunidade.
           </p>
         </Reveal>
 
@@ -440,7 +450,7 @@ function ContextSection({ onOpenModal }: { onOpenModal: () => void }) {
                 ))}
               </ul>
               <div className="mt-10 flex justify-center">
-                <CTAButton onClick={onOpenModal}>Garantir minha vaga</CTAButton>
+                <CTAButton>Garantir minha vaga</CTAButton>
               </div>
             </div>
           </div>
@@ -469,23 +479,29 @@ function AuthoritySection() {
                 loading="lazy"
               />
               <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-deep via-navy-deep/85 to-transparent px-6 pb-6 pt-16">
-                <h3 className="font-display text-2xl font-black text-white text-center sm:text-3xl">Giuliano Rédua</h3>
-                <p className="mt-1 text-center text-sm font-medium text-teal sm:text-base">CEO do Grupo Now</p>
+                <h3 className="font-display text-2xl font-black text-white text-center sm:text-3xl">
+                  Giuliano Rédua
+                </h3>
+                <p className="mt-1 text-center text-sm font-medium text-teal sm:text-base">
+                  CEO do Grupo Now
+                </p>
               </figcaption>
             </figure>
           </div>
         </Reveal>
         <Reveal>
           <div className="text-center md:text-left">
-            <h2 className="font-display text-3xl font-black text-white sm:text-5xl">Quem está à frente da jornada</h2>
+            <h2 className="font-display text-3xl font-black text-white sm:text-5xl">
+              Quem está à frente da jornada
+            </h2>
             <p className="mt-6 text-lg text-white/85">
-              <span className="font-semibold text-white">Giuliano Rédua</span> lidera a Jornada 4S dentro do{" "}
-              <span className="font-semibold text-white">Grupo Now</span>, com mais de{" "}
+              <span className="font-semibold text-white">Giuliano Rédua</span> lidera a Jornada 4S
+              dentro do <span className="font-semibold text-white">Grupo Now</span>, com mais de{" "}
               <span className="text-gradient-flame font-bold">30 anos</span> em comércio exterior.
             </p>
             <p className="mt-4 text-lg text-muted-foreground">
-              A metodologia é a base da Jornada 4S, abrir os olhos para um novo mercado, muito além de importação:
-              liberdade, acesso e margem real em cada operação.
+              A metodologia é a base da Jornada 4S, abrir os olhos para um novo mercado, muito além
+              de importação: liberdade, acesso e margem real em cada operação.
             </p>
           </div>
         </Reveal>
@@ -521,7 +537,10 @@ function StatCounter() {
   const done = value >= target;
   const display = done
     ? "1"
-    : (value / target).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    : (value / target).toLocaleString("pt-BR", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      });
 
   return (
     <div
@@ -550,8 +569,9 @@ function PainSection() {
         </Reveal>
         <Reveal>
           <p className="mt-6 max-w-3xl text-lg text-muted-foreground">
-            Dependência de fornecedor nacional, margens cada vez menores, pouca previsibilidade e dificuldade de
-            diferenciação da concorrência são as dores de quem ainda não negocia direto com a indústria chinesa.
+            Dependência de fornecedor nacional, margens cada vez menores, pouca previsibilidade e
+            dificuldade de diferenciação da concorrência são as dores de quem ainda não negocia
+            direto com a indústria chinesa.
           </p>
         </Reveal>
 
@@ -571,7 +591,8 @@ function PainSection() {
             <div className="text-sm uppercase tracking-widest text-teal">Escala do mercado</div>
             <StatCounter />
             <div className="mt-4 text-lg text-white/85 sm:text-xl">
-              movimentados em importação pelo <span className="font-semibold text-white">Grupo Now</span> em 2026
+              movimentados em importação pelo{" "}
+              <span className="font-semibold text-white">Grupo Now</span> em 2026
             </div>
           </div>
         </Reveal>
@@ -817,13 +838,14 @@ function InfoHighlightsSection() {
                 A maior feira multissetorial do mundo.
               </h3>
               <p className="mt-4 text-white/85">
-                Todos os anos, milhares de empresários do mundo inteiro visitam a Canton Fair para encontrar
-                fabricantes, lançar produtos e criar parcerias estratégicas, direto na origem, sem camadas de
-                intermediário no meio do caminho.
+                Todos os anos, milhares de empresários do mundo inteiro visitam a Canton Fair para
+                encontrar fabricantes, lançar produtos e criar parcerias estratégicas, direto na
+                origem, sem camadas de intermediário no meio do caminho.
               </p>
               <p className="mt-4 text-white/85">
-                Na imersão, você entende por que ela é considerada a maior feira multissetorial do mundo e como uma
-                visita a esse ambiente pode virar estratégia de crescimento, não apenas uma viagem.
+                Na imersão, você entende por que ela é considerada a maior feira multissetorial do
+                mundo e como uma visita a esse ambiente pode virar estratégia de crescimento, não
+                apenas uma viagem.
               </p>
             </div>
           </Reveal>
@@ -837,9 +859,9 @@ function InfoHighlightsSection() {
                 Suporte antes, durante e depois.
               </h3>
               <p className="mt-4 text-white/85">
-                A Jornada 4S acompanha empresários antes, durante e depois da Canton Fair, oferecendo preparação,
-                estratégia e suporte para transformar oportunidades em resultados, com o método dos 4 estágios que você
-                conhecerá nesta imersão.
+                A Jornada 4S acompanha empresários antes, durante e depois da Canton Fair,
+                oferecendo preparação, estratégia e suporte para transformar oportunidades em
+                resultados, com o método dos 4 estágios que você conhecerá nesta imersão.
               </p>
             </div>
           </Reveal>
@@ -936,11 +958,7 @@ function FAQSection() {
   );
 }
 
-function ClosingSection({
-  onOpenModal,
-}: {
-  onOpenModal: (ticketType: "individual" | "duplo") => void;
-}) {
+function ClosingSection({ onOpenModal }: { onOpenModal: () => void }) {
   const included = [
     { icon: Calendar, text: "1 dia de imersão presencial na Connect, Boqueirão/Santos" },
     { icon: BarChart3, text: "O método completo dos 4 estágios da importação" },
@@ -954,7 +972,9 @@ function ClosingSection({
     <section className="relative overflow-hidden border-t border-white/5 bg-navy-deep py-12 sm:py-16">
       <div
         className="absolute inset-0 opacity-40"
-        style={{ background: "radial-gradient(circle at 50% 0%, oklch(0.28 0.08 275) 0%, transparent 60%)" }}
+        style={{
+          background: "radial-gradient(circle at 50% 0%, oklch(0.28 0.08 275) 0%, transparent 60%)",
+        }}
         aria-hidden
       />
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
@@ -1009,7 +1029,9 @@ function ClosingSection({
             <span className="inline-flex items-center gap-2 rounded-full border border-teal/40 bg-teal/10 px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-teal">
               Pacote completo
             </span>
-            <h3 className="mt-4 font-display text-2xl font-black text-white sm:text-3xl">O que está incluso</h3>
+            <h3 className="mt-4 font-display text-2xl font-black text-white sm:text-3xl">
+              O que está incluso
+            </h3>
             <ul className="mt-8 grid gap-5 sm:grid-cols-2">
               {included.map(({ icon: Icon, text }) => (
                 <li key={text} className="flex items-start gap-3">
@@ -1028,23 +1050,28 @@ function ClosingSection({
           <div id="inscricao" className="mt-12 grid gap-6 sm:grid-cols-2 scroll-mt-24">
             <div className="grid gap-8 rounded-3xl border-2 border-flame/60 bg-gradient-to-br from-navy-elevated to-navy p-8 shadow-flame sm:p-10">
               <div>
-                <div className="text-sm uppercase tracking-widest text-teal">Ingresso individual</div>
+                <div className="text-sm uppercase tracking-widest text-teal">
+                  Ingresso individual
+                </div>
                 <div className="mt-3 flex flex-nowrap items-baseline gap-2">
                   <span className="whitespace-nowrap font-display text-3xl font-black text-white sm:text-4xl lg:text-5xl">
-                    <span className="text-lg font-medium text-muted-foreground sm:text-xl lg:text-2xl">10x</span> R$
-                    29,70
+                    <span className="text-lg font-medium text-muted-foreground sm:text-xl lg:text-2xl">
+                      10x
+                    </span>{" "}
+                    R$ 29,70
                   </span>
                 </div>
                 <div className="mt-2 text-sm text-muted-foreground">ou R$ 297 à vista / vaga</div>
                 <p className="mt-4 max-w-md text-white/85">
-                  Condição especial para os primeiros inscritos. Vagas limitadas a 30 empresários por edição.
+                  Condição especial para os primeiros inscritos. Vagas limitadas a 30 empresários
+                  por edição.
                 </p>
               </div>
               <div className="flex flex-col items-stretch gap-3">
-                <CTAButton size="lg" className="text-lg" onClick={() => onOpenModal("individual")}>
+                <CTAButton size="lg" className="text-lg" onClick={onOpenModal}>
                   Garantir minha vaga
                 </CTAButton>
-                <WhatsAppButton onClick={() => onOpenModal("individual")} />
+                <WhatsAppButton href={WHATSAPP_INDIVIDUAL_HREF} />
                 <div className="text-center text-xs uppercase tracking-widest text-muted-foreground">
                   Atendimento rápido pelo WhatsApp
                 </div>
@@ -1056,20 +1083,24 @@ function ClosingSection({
                 <div className="text-sm uppercase tracking-widest text-teal">Ingresso duplo</div>
                 <div className="mt-3 flex flex-nowrap items-baseline gap-2">
                   <span className="whitespace-nowrap font-display text-3xl font-black text-white sm:text-4xl lg:text-5xl">
-                    <span className="text-lg font-medium text-muted-foreground sm:text-xl lg:text-2xl">10x</span> R$
-                    49,70
+                    <span className="text-lg font-medium text-muted-foreground sm:text-xl lg:text-2xl">
+                      10x
+                    </span>{" "}
+                    R$ 49,70
                   </span>
                 </div>
-                <div className="mt-2 text-sm text-muted-foreground">ou R$ 497 à vista / 2 vagas</div>
+                <div className="mt-2 text-sm text-muted-foreground">
+                  ou R$ 497 à vista / 2 vagas
+                </div>
                 <p className="mt-4 max-w-md text-white/85">
                   Leve um sócio ou parceiro de negócio e economize levando os dois para a imersão.
                 </p>
               </div>
               <div className="flex flex-col items-stretch gap-3">
-                <CTAButton size="lg" className="text-lg" onClick={() => onOpenModal("duplo")}>
+                <CTAButton size="lg" className="text-lg" onClick={onOpenModal}>
                   Garantir as 2 vagas
                 </CTAButton>
-                <WhatsAppButton onClick={() => onOpenModal("duplo")} />
+                <WhatsAppButton href={WHATSAPP_DUPLO_HREF} />
                 <div className="text-center text-xs uppercase tracking-widest text-muted-foreground">
                   Atendimento rápido pelo WhatsApp
                 </div>
@@ -1097,26 +1128,20 @@ function Footer() {
 
 function LandingPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [ticketType, setTicketType] = useState<"individual" | "duplo">("individual");
-
-  const openModal = (type: "individual" | "duplo" = "individual") => {
-    setTicketType(type);
-    setIsModalOpen(true);
-  };
 
   return (
     <div className="min-h-screen bg-navy-deep text-white">
-      <LeadModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} ticketType={ticketType} />
+      <LeadModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <Header />
       <main>
-        <Hero onOpenModal={() => openModal("individual")} />
+        <Hero />
         <AuthoritySection />
-        <ContextSection onOpenModal={() => openModal("individual")} />
+        <ContextSection />
         <PainSection />
         <ForWhomSection />
         <TestimonialsSection />
         <InfoHighlightsSection />
-        <ClosingSection onOpenModal={openModal} />
+        <ClosingSection onOpenModal={() => setIsModalOpen(true)} />
         <FAQSection />
       </main>
       <Footer />
