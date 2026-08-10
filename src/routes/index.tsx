@@ -1068,7 +1068,7 @@ function ClosingSection({
                 </p>
               </div>
               <div className="flex flex-col items-stretch gap-3">
-                <CTAButton size="lg" className="text-lg" onClick={() => onOpenModal("duplo")}>
+                <CTAButton size="lg" className="text-lg" href={SYMPLA_HREF}>
                   Garantir as 2 vagas
                 </CTAButton>
                 <WhatsAppButton onClick={() => onOpenModal("duplo")} />
