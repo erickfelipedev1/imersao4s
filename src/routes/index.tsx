@@ -45,6 +45,8 @@ const EVENT_TIME_LABEL = "14:00 ÀS 19:00";
 const EVENT_CITY_LABEL = "SANTOS - SP";
 const EVENT_DATETIME = new Date("2026-09-01T14:00:00-03:00");
 const CTA_HREF = "#inscricao";
+const SYMPLA_HREF =
+  "https://www.sympla.com.br/evento/jornada-4s---international-experience/3534522";
 
 /* -------- utilities -------- */
 
