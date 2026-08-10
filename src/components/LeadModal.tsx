@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { sendLeadToClint } from "@/lib/clint.server";
+import { db } from "@/lib/firebase";
 import logoIE from "@/assets/international-experience.png.asset.json";
 
 const SYMPLA_URL = "https://www.sympla.com.br/evento/jornada-4s-international-experience/3534522";
@@ -51,6 +53,18 @@ export function LeadModal({ isOpen, onClose }: LeadModalProps) {
       } catch (webhookError) {
         // Log do erro mas continua (não falha o fluxo se o Clint falhar)
         console.error("Webhook falhou:", webhookError);
+      }
+
+      // Backup no Firestore, independente do Clint
+      try {
+        await addDoc(collection(db, "leads"), {
+          nome: formData.nome,
+          email: formData.email,
+          telefone: formData.telefone,
+          createdAt: serverTimestamp(),
+        });
+      } catch (firestoreError) {
+        console.error("Backup no Firestore falhou:", firestoreError);
       }
 
       window.open(SYMPLA_URL, "_blank");
