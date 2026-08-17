@@ -24,13 +24,26 @@ function getVisitorId() {
   return id;
 }
 
-function getSessionId() {
-  let id = sessionStorage.getItem("an_session_id");
-  if (!id) {
+const SESSION_TTL_MS = 30 * 60 * 1000;
+
+/**
+ * Sessão única por 30 minutos de inatividade (mesmo critério do Analytics do Lovable).
+ * Persistida em localStorage para sobreviver a novas abas/recarregamentos.
+ */
+function getSession() {
+  const now = Date.now();
+  const last = Number(localStorage.getItem("an_session_last") || 0);
+  let id = localStorage.getItem("an_session_id");
+  let isNew = false;
+
+  if (!id || !last || now - last > SESSION_TTL_MS) {
     id = randomId();
-    sessionStorage.setItem("an_session_id", id);
+    isNew = true;
+    localStorage.setItem("an_session_id", id);
   }
-  return id;
+
+  localStorage.setItem("an_session_last", String(now));
+  return { id, isNew };
 }
 
 function getDevice(): "mobile" | "tablet" | "desktop" {
@@ -63,11 +76,13 @@ export function startTracking(path: string) {
   if (typeof window === "undefined") return () => {};
 
   const visitorId = getVisitorId();
-  const sessionId = getSessionId();
+  const session = getSession();
+  const sessionId = session.id;
   const device = getDevice();
   const source = getSource();
-  const isNewSession = !sessionStorage.getItem("an_session_started");
-  sessionStorage.setItem("an_session_started", "1");
+  const isNewSession = session.isNew;
+  // mantém compatibilidade com o heartbeat de presença
+  localStorage.setItem("an_session_last", String(Date.now()));
 
   void addDoc(collection(db, EVENTS_COLLECTION), {
     type: "pageview",
@@ -82,6 +97,7 @@ export function startTracking(path: string) {
 
   const presenceRef = doc(db, PRESENCE_COLLECTION, sessionId);
   const ping = () => {
+    localStorage.setItem("an_session_last", String(Date.now()));
     void setDoc(presenceRef, {
       path,
       device,
