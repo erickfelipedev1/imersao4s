@@ -76,11 +76,13 @@ export function startTracking(path: string) {
   if (typeof window === "undefined") return () => {};
 
   const visitorId = getVisitorId();
-  const sessionId = getSessionId();
+  const session = getSession();
+  const sessionId = session.id;
   const device = getDevice();
   const source = getSource();
-  const isNewSession = !sessionStorage.getItem("an_session_started");
-  sessionStorage.setItem("an_session_started", "1");
+  const isNewSession = session.isNew;
+  // mantém compatibilidade com o heartbeat de presença
+  localStorage.setItem("an_session_last", String(Date.now()));
 
   void addDoc(collection(db, EVENTS_COLLECTION), {
     type: "pageview",
