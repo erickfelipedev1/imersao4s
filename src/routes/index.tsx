@@ -1097,6 +1097,10 @@ function Footer() {
 function LandingPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  useEffect(() => startTracking("/"), []);
+
+
+
   return (
     <div className="min-h-screen bg-navy-deep text-white">
       <LeadModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
