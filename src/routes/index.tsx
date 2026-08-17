@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { LeadModal } from "@/components/LeadModal";
+import { startTracking } from "@/lib/analytics-tracker";
 import {
   Ship,
   Package,
