@@ -120,14 +120,10 @@ function AnalyticsPage() {
 
     const series: { date: string; value: number; visitors: number }[] = [];
     for (let i = days - 1; i >= 0; i--) {
-      const d = new Date();
-      d.setHours(0, 0, 0, 0);
-      d.setDate(d.getDate() - i);
-      const next = new Date(d);
-      next.setDate(next.getDate() + 1);
-      const dayEvents = events.filter((e) => e.createdAt >= d && e.createdAt < next);
+      const key = spDayKeyOffset(-i);
+      const dayEvents = events.filter((e) => spDayKey(e.createdAt) === key);
       series.push({
-        date: d.toLocaleDateString("pt-BR", { day: "2-digit", month: "short" }),
+        date: spDayLabel(key),
         value: dayEvents.length,
         visitors: new Set(dayEvents.map((e) => e.visitorId)).size,
       });
