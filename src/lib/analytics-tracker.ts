@@ -97,6 +97,7 @@ export function startTracking(path: string) {
 
   const presenceRef = doc(db, PRESENCE_COLLECTION, sessionId);
   const ping = () => {
+    localStorage.setItem("an_session_last", String(Date.now()));
     void setDoc(presenceRef, {
       path,
       device,
