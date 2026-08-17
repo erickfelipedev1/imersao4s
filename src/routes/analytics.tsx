@@ -190,16 +190,6 @@ function AnalyticsPage() {
             >
               Leads
             </Link>
-            <button
-              onClick={async () => {
-                await logoutUser();
-                navigate({ to: "/login" });
-              }}
-              className="inline-flex items-center gap-2 rounded-lg border border-white/15 px-4 py-2 text-sm font-medium transition hover:border-white/35"
-            >
-              <LogOut className="h-4 w-4" />
-              Sair
-            </button>
           </div>
         </div>
 
