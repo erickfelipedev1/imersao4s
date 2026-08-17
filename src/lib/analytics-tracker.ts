@@ -24,13 +24,26 @@ function getVisitorId() {
   return id;
 }
 
-function getSessionId() {
-  let id = sessionStorage.getItem("an_session_id");
-  if (!id) {
+const SESSION_TTL_MS = 30 * 60 * 1000;
+
+/**
+ * Sessão única por 30 minutos de inatividade (mesmo critério do Analytics do Lovable).
+ * Persistida em localStorage para sobreviver a novas abas/recarregamentos.
+ */
+function getSession() {
+  const now = Date.now();
+  const last = Number(localStorage.getItem("an_session_last") || 0);
+  let id = localStorage.getItem("an_session_id");
+  let isNew = false;
+
+  if (!id || !last || now - last > SESSION_TTL_MS) {
     id = randomId();
-    sessionStorage.setItem("an_session_id", id);
+    isNew = true;
+    localStorage.setItem("an_session_id", id);
   }
-  return id;
+
+  localStorage.setItem("an_session_last", String(now));
+  return { id, isNew };
 }
 
 function getDevice(): "mobile" | "tablet" | "desktop" {
