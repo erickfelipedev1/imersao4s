@@ -1,12 +1,11 @@
 "use client";
 
-import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { collection, onSnapshot, query, where, Timestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { EVENTS_COLLECTION, PRESENCE_COLLECTION } from "@/lib/analytics-tracker";
-import { onAuthStateChangedListener, logoutUser } from "@/lib/auth";
-import { LogOut, Users } from "lucide-react";
+import { Users } from "lucide-react";
 
 interface EventRow {
   id: string;
@@ -26,29 +25,13 @@ const RANGES = [
 ];
 
 function AnalyticsPage() {
-  const navigate = useNavigate();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userEmail, setUserEmail] = useState("");
   const [events, setEvents] = useState<EventRow[]>([]);
   const [online, setOnline] = useState(0);
   const [days, setDays] = useState(7);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const unsub = onAuthStateChangedListener((user) => {
-      if (!user) {
-        navigate({ to: "/login" });
-      } else {
-        setIsAuthenticated(true);
-        setUserEmail(user.email || "");
-      }
-    });
-    return () => unsub();
-  }, []);
-
   // Eventos em tempo real
   useEffect(() => {
-    if (!isAuthenticated) return;
     const since = new Date();
     since.setHours(0, 0, 0, 0);
     since.setDate(since.getDate() - (days - 1));
@@ -84,11 +67,10 @@ function AnalyticsPage() {
       },
     );
     return () => unsub();
-  }, [isAuthenticated, days]);
+  }, [days]);
 
   // Visitantes online em tempo real
   useEffect(() => {
-    if (!isAuthenticated) return;
     const unsub = onSnapshot(collection(db, PRESENCE_COLLECTION), (snap) => {
       const cutoff = Date.now() - 60_000;
       const active = new Set<string>();
@@ -100,7 +82,7 @@ function AnalyticsPage() {
       setOnline(active.size);
     });
     return () => unsub();
-  }, [isAuthenticated]);
+  }, []);
 
   const stats = useMemo(() => {
     const visitors = new Set(events.map((e) => e.visitorId)).size;
@@ -143,13 +125,6 @@ function AnalyticsPage() {
     };
   }, [events, days]);
 
-  if (!isAuthenticated) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-navy-deep text-white">
-        <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-teal" />
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-navy-deep text-white">
@@ -166,9 +141,7 @@ function AnalyticsPage() {
                 {online} {online === 1 ? "visitante agora" : "visitantes agora"}
               </span>
             </div>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Atualização em tempo real{userEmail && ` • ${userEmail}`}
-            </p>
+            <p className="mt-2 text-sm text-muted-foreground">Atualização em tempo real</p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
             {RANGES.map((r) => (
@@ -190,16 +163,6 @@ function AnalyticsPage() {
             >
               Leads
             </Link>
-            <button
-              onClick={async () => {
-                await logoutUser();
-                navigate({ to: "/login" });
-              }}
-              className="inline-flex items-center gap-2 rounded-lg border border-white/15 px-4 py-2 text-sm font-medium transition hover:border-white/35"
-            >
-              <LogOut className="h-4 w-4" />
-              Sair
-            </button>
           </div>
         </div>
 
