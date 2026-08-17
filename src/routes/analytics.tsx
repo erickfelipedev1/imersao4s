@@ -68,11 +68,10 @@ function AnalyticsPage() {
       },
     );
     return () => unsub();
-  }, [isAuthenticated, days]);
+  }, [days]);
 
   // Visitantes online em tempo real
   useEffect(() => {
-    if (!isAuthenticated) return;
     const unsub = onSnapshot(collection(db, PRESENCE_COLLECTION), (snap) => {
       const cutoff = Date.now() - 60_000;
       const active = new Set<string>();
