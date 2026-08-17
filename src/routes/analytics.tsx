@@ -32,9 +32,7 @@ function AnalyticsPage() {
 
   // Eventos em tempo real
   useEffect(() => {
-    const since = new Date();
-    since.setHours(0, 0, 0, 0);
-    since.setDate(since.getDate() - (days - 1));
+    const since = spDayStart(spDayKeyOffset(-(days - 1)));
 
     const q = query(
       collection(db, EVENTS_COLLECTION),
