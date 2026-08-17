@@ -143,7 +143,6 @@ function AnalyticsPage() {
     };
   }, [events, days]);
 
-  if (loading) {
 
   return (
     <div className="min-h-screen bg-navy-deep text-white">
