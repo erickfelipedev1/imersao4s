@@ -166,9 +166,7 @@ function AnalyticsPage() {
                 {online} {online === 1 ? "visitante agora" : "visitantes agora"}
               </span>
             </div>
-            <p className="mt-2 text-sm text-muted-foreground">
-              Atualização em tempo real{userEmail && ` • ${userEmail}`}
-            </p>
+            <p className="mt-2 text-sm text-muted-foreground">Atualização em tempo real</p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
             {RANGES.map((r) => (
