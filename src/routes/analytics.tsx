@@ -26,29 +26,13 @@ const RANGES = [
 ];
 
 function AnalyticsPage() {
-  const navigate = useNavigate();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userEmail, setUserEmail] = useState("");
   const [events, setEvents] = useState<EventRow[]>([]);
   const [online, setOnline] = useState(0);
   const [days, setDays] = useState(7);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const unsub = onAuthStateChangedListener((user) => {
-      if (!user) {
-        navigate({ to: "/login" });
-      } else {
-        setIsAuthenticated(true);
-        setUserEmail(user.email || "");
-      }
-    });
-    return () => unsub();
-  }, []);
-
   // Eventos em tempo real
   useEffect(() => {
-    if (!isAuthenticated) return;
     const since = new Date();
     since.setHours(0, 0, 0, 0);
     since.setDate(since.getDate() - (days - 1));
