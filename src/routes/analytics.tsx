@@ -143,13 +143,7 @@ function AnalyticsPage() {
     };
   }, [events, days]);
 
-  if (!isAuthenticated) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-navy-deep text-white">
-        <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-teal" />
-      </div>
-    );
-  }
+  if (loading) {
 
   return (
     <div className="min-h-screen bg-navy-deep text-white">
