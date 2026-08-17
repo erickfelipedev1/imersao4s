@@ -24,6 +24,37 @@ const RANGES = [
   { label: "30 dias", days: 30 },
 ];
 
+// Todos os agrupamentos por dia usam o fuso de São Paulo (UTC-3, sem horário de verão)
+const SP_TZ = "America/Sao_Paulo";
+
+function spDayKey(date: Date) {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: SP_TZ,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(date);
+}
+
+function spDayKeyOffset(deltaDays: number) {
+  const base = new Date(`${spDayKey(new Date())}T12:00:00-03:00`);
+  base.setDate(base.getDate() + deltaDays);
+  return spDayKey(base);
+}
+
+function spDayStart(key: string) {
+  return new Date(`${key}T00:00:00-03:00`);
+}
+
+function spDayLabel(key: string) {
+  return new Intl.DateTimeFormat("pt-BR", {
+    timeZone: SP_TZ,
+    day: "2-digit",
+    month: "short",
+  }).format(spDayStart(key));
+}
+
+
 function AnalyticsPage() {
   const [events, setEvents] = useState<EventRow[]>([]);
   const [online, setOnline] = useState(0);
