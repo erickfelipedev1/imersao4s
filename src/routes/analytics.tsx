@@ -83,7 +83,7 @@ function AnalyticsPage() {
       setOnline(active.size);
     });
     return () => unsub();
-  }, [isAuthenticated]);
+  }, []);
 
   const stats = useMemo(() => {
     const visitors = new Set(events.map((e) => e.visitorId)).size;
