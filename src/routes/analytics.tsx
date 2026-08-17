@@ -1,12 +1,11 @@
 "use client";
 
-import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { collection, onSnapshot, query, where, Timestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { EVENTS_COLLECTION, PRESENCE_COLLECTION } from "@/lib/analytics-tracker";
-import { onAuthStateChangedListener, logoutUser } from "@/lib/auth";
-import { LogOut, Users } from "lucide-react";
+import { Users } from "lucide-react";
 
 interface EventRow {
   id: string;
