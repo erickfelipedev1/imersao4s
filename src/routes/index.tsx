@@ -1044,9 +1044,9 @@ function ClosingSection() {
                   size="lg"
                   variant="whatsapp"
                   href={WHATSAPP_INDIVIDUAL_HREF}
-                  className="text-lg"
+                  className="whitespace-nowrap text-sm sm:text-lg"
                 >
-                  Quer mais informações? Fale no WhatsApp
+                  Fale com nosso especialista pelo Whatsapp
                 </CTAButton>
                 <div className="text-center text-xs uppercase tracking-widest text-muted-foreground">
                   Atendimento rápido pelo WhatsApp
@@ -1073,9 +1073,9 @@ function ClosingSection() {
                   size="lg"
                   variant="whatsapp"
                   href={WHATSAPP_DUPLO_HREF}
-                  className="text-lg"
+                  className="whitespace-nowrap text-sm sm:text-lg"
                 >
-                  Quer mais informações? Fale no WhatsApp
+                  Fale com nosso especialista pelo Whatsapp
                 </CTAButton>
                 <div className="text-center text-xs uppercase tracking-widest text-muted-foreground">
                   Atendimento rápido pelo WhatsApp
