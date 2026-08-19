@@ -1046,7 +1046,7 @@ function ClosingSection() {
                   href={WHATSAPP_INDIVIDUAL_HREF}
                   className="whitespace-nowrap text-sm sm:text-lg"
                 >
-                  Fale com nosso especialista pelo Whatsapp
+                  Fale com nossos especialistas
                 </CTAButton>
                 <div className="text-center text-xs uppercase tracking-widest text-muted-foreground">
                   Atendimento rápido pelo WhatsApp
@@ -1075,7 +1075,7 @@ function ClosingSection() {
                   href={WHATSAPP_DUPLO_HREF}
                   className="whitespace-nowrap text-sm sm:text-lg"
                 >
-                  Fale com nosso especialista pelo Whatsapp
+                  Fale com nossos especialistas
                 </CTAButton>
                 <div className="text-center text-xs uppercase tracking-widest text-muted-foreground">
                   Atendimento rápido pelo WhatsApp
