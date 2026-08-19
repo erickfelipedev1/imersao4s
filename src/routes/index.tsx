@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { LeadModal } from "@/components/LeadModal";
 import { startTracking } from "@/lib/analytics-tracker";
 import {
   Ship,
@@ -45,9 +44,9 @@ const EVENT_DATE_LABEL = "1º DE SETEMBRO";
 const EVENT_TIME_LABEL = "14:00 ÀS 19:00";
 const EVENT_CITY_LABEL = "SANTOS - SP";
 const EVENT_DATETIME = new Date("2026-09-01T14:00:00-03:00");
-const CTA_HREF = "#inscricao";
 const WHATSAPP_INDIVIDUAL_HREF = "https://wa.link/phm01w";
 const WHATSAPP_DUPLO_HREF = "https://wa.link/pyk6sz";
+const CTA_HREF = WHATSAPP_INDIVIDUAL_HREF;
 
 /* -------- utilities -------- */
 
@@ -332,8 +331,8 @@ function Hero() {
 
         <Reveal>
           <div className="mt-6 flex flex-col items-center gap-4">
-            <CTAButton size="lg" className="animate-pulse-glow">
-              Garantir minha vaga
+            <CTAButton size="lg" variant="whatsapp" className="animate-pulse-glow">
+              Quer mais informações? Fale no WhatsApp
             </CTAButton>
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <ShieldCheck className="h-4 w-4 text-teal" />
@@ -439,7 +438,7 @@ function ContextSection() {
                 ))}
               </ul>
               <div className="mt-10 flex justify-center">
-                <CTAButton>Garantir minha vaga</CTAButton>
+                <CTAButton variant="whatsapp">Quer mais informações? Fale no WhatsApp</CTAButton>
               </div>
             </div>
           </div>
@@ -938,7 +937,7 @@ function FAQSection() {
   );
 }
 
-function ClosingSection({ onOpenModal }: { onOpenModal: () => void }) {
+function ClosingSection() {
   const included = [
     { icon: Calendar, text: "1 dia de imersão presencial na Connect, Boqueirão/Santos" },
     { icon: BarChart3, text: "O método completo dos 4 estágios da importação" },
@@ -1041,10 +1040,14 @@ function ClosingSection({ onOpenModal }: { onOpenModal: () => void }) {
                 </p>
               </div>
               <div className="flex flex-col items-stretch gap-3">
-                <CTAButton size="lg" className="text-lg" onClick={onOpenModal}>
-                  Garantir minha vaga
+                <CTAButton
+                  size="lg"
+                  variant="whatsapp"
+                  href={WHATSAPP_INDIVIDUAL_HREF}
+                  className="text-lg"
+                >
+                  Quer mais informações? Fale no WhatsApp
                 </CTAButton>
-                <WhatsAppButton href={WHATSAPP_INDIVIDUAL_HREF} />
                 <div className="text-center text-xs uppercase tracking-widest text-muted-foreground">
                   Atendimento rápido pelo WhatsApp
                 </div>
@@ -1066,10 +1069,14 @@ function ClosingSection({ onOpenModal }: { onOpenModal: () => void }) {
                 </p>
               </div>
               <div className="flex flex-col items-stretch gap-3">
-                <CTAButton size="lg" className="text-lg" onClick={onOpenModal}>
-                  Garantir as 2 vagas
+                <CTAButton
+                  size="lg"
+                  variant="whatsapp"
+                  href={WHATSAPP_DUPLO_HREF}
+                  className="text-lg"
+                >
+                  Quer mais informações? Fale no WhatsApp
                 </CTAButton>
-                <WhatsAppButton href={WHATSAPP_DUPLO_HREF} />
                 <div className="text-center text-xs uppercase tracking-widest text-muted-foreground">
                   Atendimento rápido pelo WhatsApp
                 </div>
@@ -1096,15 +1103,10 @@ function Footer() {
 }
 
 function LandingPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   useEffect(() => startTracking("/"), []);
-
-
 
   return (
     <div className="min-h-screen bg-navy-deep text-white">
-      <LeadModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <Header />
       <main>
         <Hero />
@@ -1114,7 +1116,7 @@ function LandingPage() {
         <ForWhomSection />
         <TestimonialsSection />
         <InfoHighlightsSection />
-        <ClosingSection onOpenModal={() => setIsModalOpen(true)} />
+        <ClosingSection />
         <FAQSection />
       </main>
       <Footer />
